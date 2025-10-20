@@ -287,7 +287,6 @@ set_target_properties(d8vk
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}/include")
-target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/dx8")
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/build")
 target_include_directories(${PROJECT_NAME} PRIVATE ".") # SexyAppFramework
 target_link_libraries(${PROJECT_NAME} PRIVATE -static "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
