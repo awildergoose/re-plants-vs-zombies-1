@@ -262,7 +262,7 @@ class LawnApp : public SexyApp
     /*inline*/ void               EndLevel();
     inline bool                   IsIceDemo()
     {
-        return false;
+        return true;
     }
     /*inline*/ bool            IsShovelLevel();
     /*inline*/ bool            IsWallnutBowlingLevel();

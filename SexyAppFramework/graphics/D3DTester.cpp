@@ -1,5 +1,6 @@
 #include "D3D8Helper.h"
 #include "D3DTester.h"
+#include <debugapi.h>
 #include <winnt.h>
 #include <winuser.h>
 #include "misc/DirectXErrorString.h"
@@ -830,7 +831,7 @@ void D3DTester::Cleanup()
 ///////////////////////////////////////////////////////////////////////////////
 bool D3DTester::Fail(const std::string& theStr)
 {
-    MessageBox(NULL, theStr.c_str(), "fail d3d", 0);
+    OutputDebugString(theStr.c_str());
     mFailureReason = theStr;
     return false;
 }

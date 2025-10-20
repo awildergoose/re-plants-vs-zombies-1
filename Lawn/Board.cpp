@@ -9209,7 +9209,7 @@ bool Board::StageHas6Rows()
 // 0x41C0F0
 bool Board::StageHasZombieWalkInFromRight()
 {
-    if (mApp->IsWhackAZombieLevel() || mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ICE ||
+    if (mApp->IsWhackAZombieLevel() /*|| mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ICE*/ ||
         mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ZEN_GARDEN ||
         mApp->mGameMode == GameMode::GAMEMODE_TREE_OF_WISDOM ||
         mApp->mGameMode == GameMode::GAMEMODE_CHALLENGE_ZOMBIQUARIUM || mApp->IsFinalBossLevel() ||
@@ -9235,6 +9235,7 @@ bool Board::StageIsDayWithoutPool()
 // GOTY @Patoke: inlined 0x41E5E6
 bool Board::StageIsDayWithPool()
 {
+    return true;
     return mBackground == BackgroundType::BACKGROUND_3_POOL;
 }
 

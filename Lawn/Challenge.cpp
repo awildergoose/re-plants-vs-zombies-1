@@ -2846,6 +2846,11 @@ void Challenge::WhackAZombieSpawning()
 // 0x426580
 int Challenge::UpdateZombieSpawning()
 {
+    if (mApp->mGameMode == GAMEMODE_CHALLENGE_ICE)
+    {
+        return 1;
+    }
+
     if (mApp->IsWhackAZombieLevel())
     {
         WhackAZombieSpawning();

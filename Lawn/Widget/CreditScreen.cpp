@@ -1276,7 +1276,8 @@ void CreditScreen::UpdateMovie()
             mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
                                  ParticleEffect::PARTICLE_CREDIT_STROBE);
         }
-        if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 332.75f))
+        if (aCreditsReanim->mAnimTime >=
+            aFrameFactor * 332.75f)  // aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 332.75f))
         {
             mApp->AddTodParticle(678.0f, 352.0f, (int)RenderLayer::RENDER_LAYER_TOP,
                                  ParticleEffect::PARTICLE_MELONSPLASH);
