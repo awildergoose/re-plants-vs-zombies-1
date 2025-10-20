@@ -371,7 +371,7 @@ void LawnApp::LostFocus()
 {
     if (!mTodCheatKeys && CanPauseNow())
     {
-        DoPauseDialog();
+        // DoPauseDialog();
     }
 }
 
