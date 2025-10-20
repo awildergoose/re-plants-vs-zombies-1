@@ -6,12 +6,11 @@
 using namespace Sexy;
 static int gProfileVersion = 14;
 
-//0x46A7C0
-// GOTY @Patoke: 0x46EBC0
+// 0x46A7C0
+//  GOTY @Patoke: 0x46EBC0
 PlayerInfo* ProfileMgr::GetAnyProfile()
 {
-    if (mProfileMap.size() == 0)
-        return nullptr;
+    if (mProfileMap.size() == 0) return nullptr;
 
     PlayerInfo* aPlayerInfo = &mProfileMap.begin()->second;
     aPlayerInfo->LoadDetails();
@@ -19,15 +18,15 @@ PlayerInfo* ProfileMgr::GetAnyProfile()
     return aPlayerInfo;
 }
 
-//0x46A7F0
+// 0x46A7F0
 void ProfileMgr::Clear()
 {
     mProfileMap.clear();
-    mNextProfileId = 1U;
+    mNextProfileId     = 1U;
     mNextProfileUseSeq = 1U;
 }
 
-//0x46A830
+// 0x46A830
 void ProfileMgr::SyncState(DataSync& theSync)
 {
     DataReader* aReader = theSync.GetReader();
@@ -43,37 +42,35 @@ void ProfileMgr::SyncState(DataSync& theSync)
             mProfileMap.clear();
 
             ulong aMaxProfileId = 0;
-            ulong aMaxUseSeq = 0;
+            ulong aMaxUseSeq    = 0;
             for (int aProfileCount = aReader->ReadShort(); aProfileCount > 0; aProfileCount--)
             {
                 PlayerInfo aProfile;
                 aProfile.SyncSummary(theSync);
 
-                if (aProfile.mId > aMaxProfileId)
-                    aMaxProfileId = aProfile.mId;
-                if (aProfile.mUseSeq > aMaxUseSeq)
-                    aMaxUseSeq = aProfile.mUseSeq;
+                if (aProfile.mId > aMaxProfileId) aMaxProfileId = aProfile.mId;
+                if (aProfile.mUseSeq > aMaxUseSeq) aMaxUseSeq = aProfile.mUseSeq;
 
                 mProfileMap[aProfile.mName] = aProfile;
             }
 
-            mNextProfileId = aMaxProfileId + 1;
+            mNextProfileId     = aMaxProfileId + 1;
             mNextProfileUseSeq = aMaxUseSeq + 1;
         }
         else
         {
             aWriter->WriteShort((short)mProfileMap.size());
-            
+
             for (auto anItr = mProfileMap.begin(); anItr != mProfileMap.end(); anItr++)
                 anItr->second.SyncSummary(theSync);
         }
     }
 }
 
-//0x46ABC0
+// 0x46ABC0
 void ProfileMgr::Load()
 {
-    Buffer aBuffer;
+    Buffer      aBuffer;
     std::string aFileName = GetAppDataFolder() + "userdata/users.dat";
 
     try
@@ -92,7 +89,7 @@ void ProfileMgr::Load()
     }
 }
 
-//0x46AD80
+// 0x46AD80
 void ProfileMgr::Save()
 {
     DataWriter aWriter;
@@ -111,18 +108,17 @@ void ProfileMgr::DeleteProfile(ProfileMap::iterator theProfile)
     mProfileMap.erase(theProfile);
 }
 
-//0x46AF70
+// 0x46AF70
 bool ProfileMgr::DeleteProfile(const SexyString& theName)
 {
     auto anItr = mProfileMap.find(theName);
-    if (anItr == mProfileMap.end())
-        return false;
+    if (anItr == mProfileMap.end()) return false;
 
     DeleteProfile(anItr);
     return true;
 }
 
-//0x46AFF0
+// 0x46AFF0
 bool ProfileMgr::RenameProfile(const SexyString& theOldName, const SexyString& theNewName)
 {
     auto anOldItr = mProfileMap.find(theOldName);
@@ -136,7 +132,8 @@ bool ProfileMgr::RenameProfile(const SexyString& theOldName, const SexyString& t
         else
         {
             // 向 mProfileMap 中插入一个由新用户名及旧存档组成的对组
-            auto aRet = mProfileMap.emplace(theNewName, anOldItr->second);  // auto aRet = mProfileMap.insert({theNewName, anOldItr->second});
+            auto aRet = mProfileMap.emplace(
+                theNewName, anOldItr->second);  // auto aRet = mProfileMap.insert({theNewName, anOldItr->second});
             // 通过返回值检测新用户名是否与原有存档重复，重复则返回 false，插入成功则继续操作
             if (!aRet.second)
                 return false;
@@ -152,23 +149,21 @@ bool ProfileMgr::RenameProfile(const SexyString& theOldName, const SexyString& t
     }
 }
 
-//0x46B1C0
+// 0x46B1C0
 void ProfileMgr::DeleteOldestProfile()
 {
-    if (mProfileMap.size() == 0)
-        return;
+    if (mProfileMap.size() == 0) return;
 
-    //将 mUseSeq 最小的存档的所在位置记录在 anOldest 迭代器中
+    // 将 mUseSeq 最小的存档的所在位置记录在 anOldest 迭代器中
     auto anOldest = mProfileMap.begin();
     for (auto anItr = anOldest; anItr != mProfileMap.end(); anItr++)
-        if (anItr->second.mUseSeq < anOldest->second.mUseSeq)
-            anOldest = anItr;
-    //删除记录的 mUseSeq 最小的存档
+        if (anItr->second.mUseSeq < anOldest->second.mUseSeq) anOldest = anItr;
+    // 删除记录的 mUseSeq 最小的存档
     DeleteProfile(anOldest);
 }
 
-//0x46B290
-// GOTY @Patoke: 0x46F7C0
+// 0x46B290
+//  GOTY @Patoke: 0x46F7C0
 PlayerInfo* ProfileMgr::GetProfile(const SexyString& theName)
 {
     auto anItr = mProfileMap.find(theName);
@@ -182,16 +177,16 @@ PlayerInfo* ProfileMgr::GetProfile(const SexyString& theName)
     return nullptr;
 }
 
-//0x46B310
+// 0x46B310
 PlayerInfo* ProfileMgr::AddProfile(const SexyString& theName)
 {
     auto aRet = mProfileMap.emplace(theName, PlayerInfo());
     if (aRet.second)
     {
         PlayerInfo* aProfile = &aRet.first->second;
-        aProfile->mName = theName;
-        aProfile->mId = mNextProfileId++;
-        aProfile->mUseSeq = mNextProfileUseSeq++;
+        aProfile->mName      = theName;
+        aProfile->mId        = mNextProfileId++;
+        aProfile->mUseSeq    = mNextProfileUseSeq++;
         DeleteOldProfiles();
         return aProfile;
     }

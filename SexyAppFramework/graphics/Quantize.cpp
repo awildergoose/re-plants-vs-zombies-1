@@ -4,75 +4,75 @@
 
 using namespace Sexy;
 
-bool Sexy::Quantize8Bit(const ulong* theSrcBits, int theWidth, int theHeight, uchar* theDestColorIndices, ulong* theDestColorTable)
+bool Sexy::Quantize8Bit(const ulong* theSrcBits, int theWidth, int theHeight, uchar* theDestColorIndices,
+                        ulong* theDestColorTable)
 {
-	int aSize = theWidth*theHeight;
+    int aSize = theWidth * theHeight;
 
-	int aColorTableSize = 0;
-		
-	ulong aSearchTable[256];
-	uchar aTranslationTable[256]; // From search table to color table
+    int aColorTableSize = 0;
 
-	if (aSize > 0)
-	{
-		aSearchTable[0] = theSrcBits[0];
-		theDestColorTable[0] = theSrcBits[0];
-		aTranslationTable[0] = 0;
-		theDestColorIndices[0] = 0;
-		aColorTableSize++;
-	}
+    ulong aSearchTable[256];
+    uchar aTranslationTable[256];  // From search table to color table
 
-	for (int anIdx = 1; anIdx < aSize; anIdx++)
-	{
-		ulong aColor = theSrcBits[anIdx];		
+    if (aSize > 0)
+    {
+        aSearchTable[0]        = theSrcBits[0];
+        theDestColorTable[0]   = theSrcBits[0];
+        aTranslationTable[0]   = 0;
+        theDestColorIndices[0] = 0;
+        aColorTableSize++;
+    }
 
-		int aLeftPos = 0;
-		int aRightPos = aColorTableSize-1;
-		int aMiddlePos = (aLeftPos+aRightPos)/2;
+    for (int anIdx = 1; anIdx < aSize; anIdx++)
+    {
+        ulong aColor = theSrcBits[anIdx];
 
-		for (;;)
-		{	
-			ulong aCheckColor = aSearchTable[aMiddlePos];
-			
-			if (aColor < aCheckColor)
-				aRightPos = aMiddlePos - 1;
-			else if (aColor > aCheckColor)
-				aLeftPos = aMiddlePos + 1;			
-			else
-			{
-				theDestColorIndices[anIdx] = aTranslationTable[aMiddlePos];
-				break;
-			}
+        int aLeftPos   = 0;
+        int aRightPos  = aColorTableSize - 1;
+        int aMiddlePos = (aLeftPos + aRightPos) / 2;
 
-			if (aLeftPos > aRightPos)
-			{
-				if (aColorTableSize >= 256)
-					return false;
+        for (;;)
+        {
+            ulong aCheckColor = aSearchTable[aMiddlePos];
 
-				int anInsertPos = aLeftPos;
-				if ((anInsertPos < aColorTableSize) && (aColor > aSearchTable[anInsertPos]))
-					anInsertPos++;
+            if (aColor < aCheckColor)
+                aRightPos = aMiddlePos - 1;
+            else if (aColor > aCheckColor)
+                aLeftPos = aMiddlePos + 1;
+            else
+            {
+                theDestColorIndices[anIdx] = aTranslationTable[aMiddlePos];
+                break;
+            }
 
-				// Insert color into the table
-				memmove(aSearchTable+anInsertPos+1, aSearchTable+anInsertPos, (aColorTableSize-anInsertPos) * sizeof(ulong));
-				aSearchTable[anInsertPos] = aColor;
+            if (aLeftPos > aRightPos)
+            {
+                if (aColorTableSize >= 256) return false;
 
-				memmove(aTranslationTable+anInsertPos+1, aTranslationTable+anInsertPos, (aColorTableSize-anInsertPos) * sizeof(uchar));
-				aTranslationTable[anInsertPos] = aColorTableSize;
+                int anInsertPos = aLeftPos;
+                if ((anInsertPos < aColorTableSize) && (aColor > aSearchTable[anInsertPos])) anInsertPos++;
 
-				theDestColorTable[aColorTableSize] = aColor;
+                // Insert color into the table
+                memmove(aSearchTable + anInsertPos + 1, aSearchTable + anInsertPos,
+                        (aColorTableSize - anInsertPos) * sizeof(ulong));
+                aSearchTable[anInsertPos] = aColor;
 
-				theDestColorIndices[anIdx] = aColorTableSize;
+                memmove(aTranslationTable + anInsertPos + 1, aTranslationTable + anInsertPos,
+                        (aColorTableSize - anInsertPos) * sizeof(uchar));
+                aTranslationTable[anInsertPos] = aColorTableSize;
 
-				aColorTableSize++;
+                theDestColorTable[aColorTableSize] = aColor;
 
-				break;
-			}
+                theDestColorIndices[anIdx] = aColorTableSize;
 
-			aMiddlePos = (aLeftPos+aRightPos)/2;
-		}
-	}
+                aColorTableSize++;
 
-	return true;
+                break;
+            }
+
+            aMiddlePos = (aLeftPos + aRightPos) / 2;
+        }
+    }
+
+    return true;
 }
-

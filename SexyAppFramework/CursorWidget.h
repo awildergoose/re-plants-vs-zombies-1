@@ -11,18 +11,17 @@ class Image;
 
 class CursorWidget : public Widget
 {
-public:
-	Image*					mImage;
+   public:
+    Image* mImage;
 
-public:
-	CursorWidget();
+   public:
+    CursorWidget();
 
-	virtual void			Draw(Graphics* g);
-	void					SetImage(Image* theImage);
-	Point					GetHotspot();
-	
+    virtual void Draw(Graphics* g);
+    void         SetImage(Image* theImage);
+    Point        GetHotspot();
 };
 
-}
+}  // namespace Sexy
 
-#endif //__CURSORWIDGET_H__
+#endif  //__CURSORWIDGET_H__

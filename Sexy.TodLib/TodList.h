@@ -8,47 +8,49 @@
 
 struct TodAllocator
 {
-    void*				mFreeList;
-    void*				mBlockList;
-    int					mGrowCount;
-    int					mTotalItems;
-    int					mItemSize;
+    void* mFreeList;
+    void* mBlockList;
+    int   mGrowCount;
+    int   mTotalItems;
+    int   mItemSize;
 
-    void                Initialize(int theGrowCount, int theItemSize);
-    void                Dispose();
-    void                FreeAll();
-    void*               Alloc(int theItemSize);
-    void*               Calloc(int theItemSize);
-    void                Free(void* theItem, int theItemSize);
-    void                Grow();
-    bool                IsPointerFromAllocator(void* theItem);
-    bool                IsPointerOnFreeList(void* theItem);
+    void  Initialize(int theGrowCount, int theItemSize);
+    void  Dispose();
+    void  FreeAll();
+    void* Alloc(int theItemSize);
+    void* Calloc(int theItemSize);
+    void  Free(void* theItem, int theItemSize);
+    void  Grow();
+    bool  IsPointerFromAllocator(void* theItem);
+    bool  IsPointerOnFreeList(void* theItem);
 };
-extern int gNumGlobalAllocators;
+extern int          gNumGlobalAllocators;
 extern TodAllocator gGlobalAllocators[MAX_GLOBAL_ALLOCATORS];
 
-template <typename T> class TodListNode
+template <typename T>
+class TodListNode
 {
-public:
-	T					mValue;
-	TodListNode<T>*		mNext;
-	TodListNode<T>*		mPrev;
+   public:
+    T               mValue;
+    TodListNode<T>* mNext;
+    TodListNode<T>* mPrev;
 };
 
-template <typename T> class TodList
+template <typename T>
+class TodList
 {
-public:
-	TodListNode<T>*		mHead;
-	TodListNode<T>*		mTail;
-	int					mSize;
-	TodAllocator*		mpAllocator;
+   public:
+    TodListNode<T>* mHead;
+    TodListNode<T>* mTail;
+    int             mSize;
+    TodAllocator*   mpAllocator;
 
-public:
+   public:
     TodList<T>()
     {
-        mHead = nullptr;
-        mTail = nullptr;
-        mSize = 0;
+        mHead       = nullptr;
+        mTail       = nullptr;
+        mSize       = 0;
         mpAllocator = nullptr;
     }
 
@@ -71,13 +73,11 @@ public:
 
     void AddHead(const T& theHead)
     {
-        if (mpAllocator == nullptr)
-            mpAllocator = FindGlobalAllocator(sizeof(TodListNode<T>));
+        if (mpAllocator == nullptr) mpAllocator = FindGlobalAllocator(sizeof(TodListNode<T>));
 
         TodListNode<T>* aNode = (TodListNode<T>*)mpAllocator->Calloc(sizeof(TodListNode<T>));
-        if (aNode)
-            aNode->mValue = theHead;
-        aNode->mNext = mHead;  // 新节点的下一个节点指向原节点
+        if (aNode) aNode->mValue = theHead;
+        aNode->mNext = mHead;    // 新节点的下一个节点指向原节点
         aNode->mPrev = nullptr;  // 新节点作为头部，不存在上一个节点
         if (mHead)
             mHead->mPrev = aNode;  // 已存在头部节点时，令原头部节点的上一个节点指向该新节点
@@ -89,12 +89,10 @@ public:
 
     void AddTail(const T& theTail)
     {
-        if (mpAllocator == nullptr)
-            mpAllocator = FindGlobalAllocator(sizeof(TodListNode<T>));
+        if (mpAllocator == nullptr) mpAllocator = FindGlobalAllocator(sizeof(TodListNode<T>));
 
         TodListNode<T>* aNode = (TodListNode<T>*)mpAllocator->Calloc(sizeof(TodListNode<T>));
-        if (aNode)
-            aNode->mValue = theTail;
+        if (aNode) aNode->mValue = theTail;
         aNode->mNext = nullptr;
         aNode->mPrev = mTail;
         if (mTail)
@@ -107,14 +105,14 @@ public:
 
     inline T RemoveHead()
     {
-        TodListNode<T>* aHead = mHead;
+        TodListNode<T>* aHead    = mHead;
         TodListNode<T>* aSecNode = aHead->mNext;
-        mHead = aSecNode;
+        mHead                    = aSecNode;
         if (aSecNode)
             aSecNode->mPrev = nullptr;
         else
             mTail = nullptr;
-        
+
         T aVal = aHead->mValue;
         mSize--;
         mpAllocator->Free(aHead, sizeof(TodListNode<T>));
@@ -141,8 +139,7 @@ public:
     inline TodListNode<T>* Find(const T& theItem) const
     {
         for (TodListNode<T>* aNode = mHead; aNode != nullptr; aNode = aNode->mNext)
-            if (aNode->mValue == theItem)
-                return aNode;
+            if (aNode->mValue == theItem) return aNode;
         return nullptr;
     }
 
@@ -152,7 +149,7 @@ public:
         while (aNode)
         {
             TodListNode<T>* temp = aNode;
-            aNode = aNode->mNext;
+            aNode                = aNode->mNext;
             mpAllocator->Free(temp, sizeof(TodListNode<T>));
         }
 
@@ -161,8 +158,8 @@ public:
         mTail = nullptr;
     }
 
-    inline void SetAllocator(TodAllocator* theAllocator) 
-    { 
+    inline void SetAllocator(TodAllocator* theAllocator)
+    {
         TOD_ASSERT(mSize == 0);
         mpAllocator = theAllocator;
     }

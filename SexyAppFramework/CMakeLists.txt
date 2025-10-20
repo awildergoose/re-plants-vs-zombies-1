@@ -1,5 +1,5 @@
 set(PROJECT_NAME LawnProject)
-
+add_compile_definitions(POINTER_64=)
 ################################################################################
 # Source groups
 ################################################################################
@@ -190,7 +190,7 @@ set(ALL_FILES
 if(MSVC)
     add_executable(${PROJECT_NAME} WIN32 ${ALL_FILES})
 else()
-    add_executable(${PROJECT_NAME} ${ALL_FILES})
+    add_executable(${PROJECT_NAME} WIN32 ${ALL_FILES})
 endif()
 
 add_subdirectory(graphics)
@@ -287,5 +287,7 @@ set_target_properties(d8vk
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_BINARY_DIR}/include")
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/dx8")
+target_include_directories(${PROJECT_NAME} PRIVATE "${CMAKE_SOURCE_DIR}/build")
 target_include_directories(${PROJECT_NAME} PRIVATE ".") # SexyAppFramework
-target_link_libraries(${PROJECT_NAME} PRIVATE -static -static-libgcc -static-libstdc++ "${ADDITIONAL_LIBRARY_DEPENDENCIES}")
+target_link_libraries(${PROJECT_NAME} PRIVATE -static "${ADDITIONAL_LIBRARY_DEPENDENCIES}")

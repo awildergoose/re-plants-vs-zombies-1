@@ -3,32 +3,32 @@
 
 #include "../../ConstEnums.h"
 
-constexpr const int CAUSTIC_IMAGE_WIDTH = 128;
+constexpr const int CAUSTIC_IMAGE_WIDTH  = 128;
 constexpr const int CAUSTIC_IMAGE_HEIGHT = 64;
 
 namespace Sexy
 {
-	class MemoryImage;
-	class Graphics;
-};
+class MemoryImage;
+class Graphics;
+};  // namespace Sexy
 
 class LawnApp;
 class PoolEffect
 {
-public:
-	unsigned char*		mCausticGrayscaleImage;
-	Sexy::MemoryImage*	mCausticImage;
-	LawnApp*			mApp;
-	int					mPoolCounter;
+   public:
+    unsigned char*     mCausticGrayscaleImage;
+    Sexy::MemoryImage* mCausticImage;
+    LawnApp*           mApp;
+    int                mPoolCounter;
 
-public:
-	void				PoolEffectInitialize();
-	void				PoolEffectDispose();
-	void				PoolEffectDraw(Sexy::Graphics* g, bool theIsNight);
-	void				UpdateWaterEffect();
-	unsigned int		BilinearLookupFixedPoint(unsigned int u, unsigned int v);
-	//unsigned int		BilinearLookup(float u, float v);
-	void				PoolEffectUpdate();
+   public:
+    void         PoolEffectInitialize();
+    void         PoolEffectDispose();
+    void         PoolEffectDraw(Sexy::Graphics* g, bool theIsNight);
+    void         UpdateWaterEffect();
+    unsigned int BilinearLookupFixedPoint(unsigned int u, unsigned int v);
+    // unsigned int		BilinearLookup(float u, float v);
+    void PoolEffectUpdate();
 };
 
 #endif

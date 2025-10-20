@@ -3,27 +3,27 @@
 
 #include "widget/ButtonWidget.h"
 
-namespace Sexy 
+namespace Sexy
 {
-	
+
 class ButtonListener;
 
-class ScrollbuttonWidget : public ButtonWidget 
+class ScrollbuttonWidget : public ButtonWidget
 {
-public:
-	bool				mHorizontal;
+   public:
+    bool mHorizontal;
 
-	// mType is a new way of doing things (1 = up, 2 = down, 3 = left, 4 = right).  
-	// This overrides mHorizontal and mId.
-	int					mType; 
+    // mType is a new way of doing things (1 = up, 2 = down, 3 = left, 4 = right).
+    // This overrides mHorizontal and mId.
+    int mType;
 
-public:
-	ScrollbuttonWidget(int theId, ButtonListener *theButtonListener, int theType = 0);
-	virtual ~ScrollbuttonWidget();
+   public:
+    ScrollbuttonWidget(int theId, ButtonListener* theButtonListener, int theType = 0);
+    virtual ~ScrollbuttonWidget();
 
-	void				Draw(Graphics *g);
+    void Draw(Graphics* g);
 };
 
-}
+}  // namespace Sexy
 
-#endif //__SCROLLBUTTONWIDGET_H__
+#endif  //__SCROLLBUTTONWIDGET_H__

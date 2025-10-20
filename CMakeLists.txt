@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16.0 FATAL_ERROR)
 
-project(PlantsVsZombies C CXX)
+project(PlantsVsZombies C CXX)  
+add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 
 ################################################################################
 # Global configuration types
@@ -18,7 +19,7 @@ if(MSVC)
     set(universal_compiler_flags "")
 else()
     #set(universal_compiler_flags "-fsanitize=undefined -fsanitize-trap -pthread -fuse-ld=lld -fno-omit-frame-pointer -fstack-protector-all -fms-extensions -fdiagnostics-color=always -gdwarf-2 -O0")
-    set(universal_compiler_flags "-pthread -fuse-ld=lld -fms-extensions -march=native -fdiagnostics-color=always -O3")
+    set(universal_compiler_flags "-fuse-ld=lld -fms-extensions -march=native -fdiagnostics-color=always -O3")
 endif()
 set(universal_cxxflags "${CMAKE_CXX_FLAGS} ${universal_compiler_flags}")
 set(universal_cflags   "${CMAKE_C_FLAGS} ${universal_compiler_flags}")

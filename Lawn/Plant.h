@@ -7,7 +7,7 @@
 
 enum PlantSubClass
 {
-    SUBCLASS_NORMAL = 0,
+    SUBCLASS_NORMAL  = 0,
     SUBCLASS_SHOOTER = 1
 };
 
@@ -109,7 +109,7 @@ enum MagnetItemType
     MAGNET_ITEM_DOOR_1,
     MAGNET_ITEM_DOOR_2,
     MAGNET_ITEM_DOOR_3,
-    //MAGNET_ITEM_PROPELLER,
+    // MAGNET_ITEM_PROPELLER,
     MAGNET_ITEM_POGO_1,
     MAGNET_ITEM_POGO_2,
     MAGNET_ITEM_POGO_3,
@@ -126,12 +126,12 @@ enum MagnetItemType
 
 class MagnetItem
 {
-public:
-    float                   mPosX;                          //+0x0
-    float                   mPosY;                          //+0x4
-    float                   mDestOffsetX;                   //+0x8
-    float                   mDestOffsetY;                   //+0xC
-    MagnetItemType          mItemType;                      //+0x10
+   public:
+    float          mPosX;         //+0x0
+    float          mPosY;         //+0x4
+    float          mDestOffsetX;  //+0x8
+    float          mDestOffsetY;  //+0xC
+    MagnetItemType mItemType;     //+0x10
 };
 
 class Coin;
@@ -141,176 +141,180 @@ class TodParticleSystem;
 
 class Plant : public GameObject
 {
-public:
-    SeedType                mSeedType;                      //+0x24
-    int                     mPlantCol;                      //+0x28
-    int                     mAnimCounter;                   //+0x2C
-    int                     mFrame;                         //+0x30
-    int                     mFrameLength;                   //+0x34
-    int                     mNumFrames;                     //+0x38
-    PlantState              mState;                         //+0x3C
-    int                     mPlantHealth;                   //+0x40
-    int                     mPlantMaxHealth;                //+0x44
-    int                     mSubclass;                      //+0x48
-    int                     mDisappearCountdown;            //+0x4C
-    int                     mDoSpecialCountdown;            //+0x50
-    int                     mStateCountdown;                //+0x54
-    int                     mLaunchCounter;                 //+0x58
-    int                     mLaunchRate;                    //+0x5C
-    Rect                    mPlantRect;                     //+0x60
-    Rect                    mPlantAttackRect;               //+0x70
-    int                     mTargetX;                       //+0x80
-    int                     mTargetY;                       //+0x84
-    int                     mStartRow;                      //+0x88
-    ParticleSystemID        mParticleID;                    //+0x8C
-    int                     mShootingCounter;               //+0x90
-    ReanimationID           mBodyReanimID;                  //+0x94
-    ReanimationID           mHeadReanimID;                  //+0x98
-    ReanimationID           mHeadReanimID2;                 //+0x9C
-    ReanimationID           mHeadReanimID3;                 //+0xA0
-    ReanimationID           mBlinkReanimID;                 //+0xA4
-    ReanimationID           mLightReanimID;                 //+0xA8
-    ReanimationID           mSleepingReanimID;              //+0xAC
-    int                     mBlinkCountdown;                //+0xB0
-    int                     mRecentlyEatenCountdown;        //+0xB4
-    int                     mEatenFlashCountdown;           //+0xB8
-    int                     mBeghouledFlashCountdown;       //+0xBC
-    float                   mShakeOffsetX;                  //+0xC0
-    float                   mShakeOffsetY;                  //+0xC4
-    MagnetItem              mMagnetItems[MAX_MAGNET_ITEMS]; //+0xC8
-    ZombieID                mTargetZombieID;                //+0x12C
-    int                     mWakeUpCounter;                 //+0x130
-    PlantOnBungeeState      mOnBungeeState;                 //+0x134
-    SeedType                mImitaterType;                  //+0x138
-    int                     mPottedPlantIndex;              //+0x13C
-    bool                    mAnimPing;                      //+0x140
-    bool                    mDead;                          //+0x141
-    bool                    mSquished;                      //+0x142
-    bool                    mIsAsleep;                      //+0x143
-    bool                    mIsOnBoard;                     //+0x144
-    bool                    mHighlighted;                   //+0x145
+   public:
+    SeedType           mSeedType;                       //+0x24
+    int                mPlantCol;                       //+0x28
+    int                mAnimCounter;                    //+0x2C
+    int                mFrame;                          //+0x30
+    int                mFrameLength;                    //+0x34
+    int                mNumFrames;                      //+0x38
+    PlantState         mState;                          //+0x3C
+    int                mPlantHealth;                    //+0x40
+    int                mPlantMaxHealth;                 //+0x44
+    int                mSubclass;                       //+0x48
+    int                mDisappearCountdown;             //+0x4C
+    int                mDoSpecialCountdown;             //+0x50
+    int                mStateCountdown;                 //+0x54
+    int                mLaunchCounter;                  //+0x58
+    int                mLaunchRate;                     //+0x5C
+    Rect               mPlantRect;                      //+0x60
+    Rect               mPlantAttackRect;                //+0x70
+    int                mTargetX;                        //+0x80
+    int                mTargetY;                        //+0x84
+    int                mStartRow;                       //+0x88
+    ParticleSystemID   mParticleID;                     //+0x8C
+    int                mShootingCounter;                //+0x90
+    ReanimationID      mBodyReanimID;                   //+0x94
+    ReanimationID      mHeadReanimID;                   //+0x98
+    ReanimationID      mHeadReanimID2;                  //+0x9C
+    ReanimationID      mHeadReanimID3;                  //+0xA0
+    ReanimationID      mBlinkReanimID;                  //+0xA4
+    ReanimationID      mLightReanimID;                  //+0xA8
+    ReanimationID      mSleepingReanimID;               //+0xAC
+    int                mBlinkCountdown;                 //+0xB0
+    int                mRecentlyEatenCountdown;         //+0xB4
+    int                mEatenFlashCountdown;            //+0xB8
+    int                mBeghouledFlashCountdown;        //+0xBC
+    float              mShakeOffsetX;                   //+0xC0
+    float              mShakeOffsetY;                   //+0xC4
+    MagnetItem         mMagnetItems[MAX_MAGNET_ITEMS];  //+0xC8
+    ZombieID           mTargetZombieID;                 //+0x12C
+    int                mWakeUpCounter;                  //+0x130
+    PlantOnBungeeState mOnBungeeState;                  //+0x134
+    SeedType           mImitaterType;                   //+0x138
+    int                mPottedPlantIndex;               //+0x13C
+    bool               mAnimPing;                       //+0x140
+    bool               mDead;                           //+0x141
+    bool               mSquished;                       //+0x142
+    bool               mIsAsleep;                       //+0x143
+    bool               mIsOnBoard;                      //+0x144
+    bool               mHighlighted;                    //+0x145
 
-public:
+   public:
     Plant();
 
-    void                    PlantInitialize(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType);
-    void                    Update();
-    void                    Animate();
-    void                    Draw(Graphics* g);
-    void                    MouseDown(int x, int y, int theClickCount);
-    void                    DoSpecial();
-    void                    Fire(Zombie* theTargetZombie, int theRow, PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
-    Zombie*                 FindTargetZombie(int theRow, PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
-    void                    Die();
-    void                    UpdateProductionPlant();
-    void                    UpdateShooter();
-    bool                    FindTargetAndFire(int theRow, PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
-    void                    LaunchThreepeater();
-    static Image*           GetImage(SeedType theSeedType);
-    static int              GetCost(SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
-    static SexyString       GetNameString(SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
-    static SexyString       GetToolTip(SeedType theSeedType);
-    static int              GetRefreshTime(SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
-    static /*inline*/ bool  IsNocturnal(SeedType theSeedtype);
-    static /*inline*/ bool  IsFungus(SeedType theSeedType);
-    static /*inline*/ bool  IsAquatic(SeedType theSeedType);
-    static /*inline*/ bool  IsFlying(SeedType theSeedtype);
-    static /*inline*/ bool  IsUpgrade(SeedType theSeedtype);
-    void                    UpdateAbilities();
-    void                    Squish();
-    void                    DoRowAreaDamage(int theDamage, unsigned int theDamageFlags);
-    int                     GetDamageRangeFlags(PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
-    Rect                    GetPlantRect();
-    Rect                    GetPlantAttackRect(PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
-    Zombie*                 FindSquashTarget();
-    void                    UpdateSquash();
-    /*inline*/ bool         NotOnGround();
-    void                    DoSquashDamage();
-    void                    BurnRow(int theRow);
-    void                    IceZombies();
-    void                    BlowAwayFliers();
-    void                    UpdateGraveBuster();
-    TodParticleSystem*      AddAttachedParticle(int thePosX, int thePosY, int theRenderPosition, ParticleEffect theEffect);
-    void                    GetPeaHeadOffset(int& theOffsetX, int& theOffsetY);
-    /*inline*/ bool         MakesSun();
-    static void             DrawSeedType(Graphics* g, SeedType theSeedType, SeedType theImitaterType, DrawVariation theDrawVariation, float thePosX, float thePosY);
-    void                    KillAllPlantsNearDoom();
-    bool                    IsOnHighGround();
-    void                    UpdateTorchwood();
-    void                    LaunchStarFruit();
-    bool                    FindStarFruitTarget();
-    void                    UpdateChomper();
-    void                    DoBlink();
-    void                    UpdateBlink();
-    void                    PlayBodyReanim(const char* theTrackName, ReanimLoopType theLoopType, int theBlendTime, float theAnimRate);
-    void                    UpdateMagnetShroom();
-    MagnetItem*             GetFreeMagnetItem();
-    void                    DrawMagnetItems(Graphics* g);
-    void                    UpdateDoomShroom();
-    void                    UpdateIceShroom();
-    void                    UpdatePotato();
-    int                     CalcRenderOrder();
-    void                    AnimateNuts();
-    void                    SetSleeping(bool theIsAsleep);
-    void                    UpdateShooting();
-    void                    DrawShadow(Graphics* g, float theOffsetX, float theOffsetY);
-    void                    UpdateScaredyShroom();
-    int                     DistanceToClosestZombie();
-    void                    UpdateSpikeweed();
-    void                    MagnetShroomAttactItem(Zombie* theZombie);
-    void                    UpdateSunShroom();
-    void                    UpdateBowling();
-    void                    AnimatePumpkin();
-    void                    UpdateBlover();
-    void                    UpdateCactus();
-    void                    StarFruitFire();
-    void                    UpdateTanglekelp();
-    Reanimation*            AttachBlinkAnim(Reanimation* theReanimBody);
-    void                    UpdateReanimColor();
-    bool                    IsUpgradableTo(SeedType theUpgradedType);
-    bool                    IsPartOfUpgradableTo(SeedType theUpgradedType);
-    void                    UpdateCobCannon();
-    void                    CobCannonFire(int theTargetX, int theTargetY);
-    void                    UpdateGoldMagnetShroom();
-    /*inline*/ bool         IsOnBoard();
-    void                    RemoveEffects();
-    void                    UpdateCoffeeBean();
-    void                    UpdateUmbrella();
-    void                    EndBlink();
-    void                    AnimateGarlic();
-    Coin*                   FindGoldMagnetTarget();
-    void                    SpikeweedAttack();
-    void                    ImitaterMorph();
-    void                    UpdateImitater();
-    void                    UpdateReanim();
-    void                    SpikeRockTakeDamage();
-    bool                    IsSpiky();
-    static /*inline*/ void  PreloadPlantResources(SeedType theSeedType);
-    /*inline*/ bool         IsInPlay();
-    void                    UpdateNeedsFood() { ; }
-    void                    PlayIdleAnim(float theRate);
-    void                    UpdateFlowerPot();
-    void                    UpdateLilypad();
-    void                    GoldMagnetFindTargets();
-    bool                    IsAGoldMagnetAboutToSuck();
-    bool                    DrawMagnetItemsOnTop();
+    void          PlantInitialize(int theGridX, int theGridY, SeedType theSeedType, SeedType theImitaterType);
+    void          Update();
+    void          Animate();
+    void          Draw(Graphics* g);
+    void          MouseDown(int x, int y, int theClickCount);
+    void          DoSpecial();
+    void          Fire(Zombie* theTargetZombie, int theRow, PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
+    Zombie*       FindTargetZombie(int theRow, PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
+    void          Die();
+    void          UpdateProductionPlant();
+    void          UpdateShooter();
+    bool          FindTargetAndFire(int theRow, PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
+    void          LaunchThreepeater();
+    static Image* GetImage(SeedType theSeedType);
+    static int    GetCost(SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
+    static SexyString      GetNameString(SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
+    static SexyString      GetToolTip(SeedType theSeedType);
+    static int             GetRefreshTime(SeedType theSeedType, SeedType theImitaterType = SeedType::SEED_NONE);
+    static /*inline*/ bool IsNocturnal(SeedType theSeedtype);
+    static /*inline*/ bool IsFungus(SeedType theSeedType);
+    static /*inline*/ bool IsAquatic(SeedType theSeedType);
+    static /*inline*/ bool IsFlying(SeedType theSeedtype);
+    static /*inline*/ bool IsUpgrade(SeedType theSeedtype);
+    void                   UpdateAbilities();
+    void                   Squish();
+    void                   DoRowAreaDamage(int theDamage, unsigned int theDamageFlags);
+    int                    GetDamageRangeFlags(PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
+    Rect                   GetPlantRect();
+    Rect                   GetPlantAttackRect(PlantWeapon thePlantWeapon = PlantWeapon::WEAPON_PRIMARY);
+    Zombie*                FindSquashTarget();
+    void                   UpdateSquash();
+    /*inline*/ bool        NotOnGround();
+    void                   DoSquashDamage();
+    void                   BurnRow(int theRow);
+    void                   IceZombies();
+    void                   BlowAwayFliers();
+    void                   UpdateGraveBuster();
+    TodParticleSystem* AddAttachedParticle(int thePosX, int thePosY, int theRenderPosition, ParticleEffect theEffect);
+    void               GetPeaHeadOffset(int& theOffsetX, int& theOffsetY);
+    /*inline*/ bool    MakesSun();
+    static void        DrawSeedType(Graphics* g, SeedType theSeedType, SeedType theImitaterType,
+                                    DrawVariation theDrawVariation, float thePosX, float thePosY);
+    void               KillAllPlantsNearDoom();
+    bool               IsOnHighGround();
+    void               UpdateTorchwood();
+    void               LaunchStarFruit();
+    bool               FindStarFruitTarget();
+    void               UpdateChomper();
+    void               DoBlink();
+    void               UpdateBlink();
+    void PlayBodyReanim(const char* theTrackName, ReanimLoopType theLoopType, int theBlendTime, float theAnimRate);
+    void UpdateMagnetShroom();
+    MagnetItem*            GetFreeMagnetItem();
+    void                   DrawMagnetItems(Graphics* g);
+    void                   UpdateDoomShroom();
+    void                   UpdateIceShroom();
+    void                   UpdatePotato();
+    int                    CalcRenderOrder();
+    void                   AnimateNuts();
+    void                   SetSleeping(bool theIsAsleep);
+    void                   UpdateShooting();
+    void                   DrawShadow(Graphics* g, float theOffsetX, float theOffsetY);
+    void                   UpdateScaredyShroom();
+    int                    DistanceToClosestZombie();
+    void                   UpdateSpikeweed();
+    void                   MagnetShroomAttactItem(Zombie* theZombie);
+    void                   UpdateSunShroom();
+    void                   UpdateBowling();
+    void                   AnimatePumpkin();
+    void                   UpdateBlover();
+    void                   UpdateCactus();
+    void                   StarFruitFire();
+    void                   UpdateTanglekelp();
+    Reanimation*           AttachBlinkAnim(Reanimation* theReanimBody);
+    void                   UpdateReanimColor();
+    bool                   IsUpgradableTo(SeedType theUpgradedType);
+    bool                   IsPartOfUpgradableTo(SeedType theUpgradedType);
+    void                   UpdateCobCannon();
+    void                   CobCannonFire(int theTargetX, int theTargetY);
+    void                   UpdateGoldMagnetShroom();
+    /*inline*/ bool        IsOnBoard();
+    void                   RemoveEffects();
+    void                   UpdateCoffeeBean();
+    void                   UpdateUmbrella();
+    void                   EndBlink();
+    void                   AnimateGarlic();
+    Coin*                  FindGoldMagnetTarget();
+    void                   SpikeweedAttack();
+    void                   ImitaterMorph();
+    void                   UpdateImitater();
+    void                   UpdateReanim();
+    void                   SpikeRockTakeDamage();
+    bool                   IsSpiky();
+    static /*inline*/ void PreloadPlantResources(SeedType theSeedType);
+    /*inline*/ bool        IsInPlay();
+    void                   UpdateNeedsFood()
+    {
+        ;
+    }
+    void PlayIdleAnim(float theRate);
+    void UpdateFlowerPot();
+    void UpdateLilypad();
+    void GoldMagnetFindTargets();
+    bool IsAGoldMagnetAboutToSuck();
+    bool DrawMagnetItemsOnTop();
 };
 
-float                       PlantDrawHeightOffset(Board* theBoard, Plant* thePlant, SeedType theSeedType, int theCol, int theRow);
-float                       PlantFlowerPotHeightOffset(SeedType theSeedType, float theFlowerPotScale);
+float PlantDrawHeightOffset(Board* theBoard, Plant* thePlant, SeedType theSeedType, int theCol, int theRow);
+float PlantFlowerPotHeightOffset(SeedType theSeedType, float theFlowerPotScale);
 
 class PlantDefinition
 {
-public:
-    SeedType                mSeedType;          //+0x0
-    Image**                 mPlantImage;        //+0x4
-    ReanimationType         mReanimationType;   //+0x8
-    int                     mPacketIndex;       //+0xC
-    int                     mSeedCost;          //+0x10
-    int                     mRefreshTime;       //+0x14
-    PlantSubClass           mSubClass;          //+0x18
-    int                     mLaunchRate;        //+0x1C
-    const SexyChar*         mPlantName;         //+0x20
+   public:
+    SeedType        mSeedType;         //+0x0
+    Image**         mPlantImage;       //+0x4
+    ReanimationType mReanimationType;  //+0x8
+    int             mPacketIndex;      //+0xC
+    int             mSeedCost;         //+0x10
+    int             mRefreshTime;      //+0x14
+    PlantSubClass   mSubClass;         //+0x18
+    int             mLaunchRate;       //+0x1C
+    const SexyChar* mPlantName;        //+0x20
 };
 extern PlantDefinition gPlantDefs[SeedType::NUM_SEED_TYPES];
 

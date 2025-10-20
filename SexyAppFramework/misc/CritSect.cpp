@@ -1,4 +1,4 @@
-#pragma warning( disable : 4786 )
+#pragma warning(disable : 4786)
 
 #include "CritSect.h"
 #define NOMINMAX 1
@@ -10,12 +10,12 @@ using namespace Sexy;
 
 CritSect::CritSect(void)
 {
-	InitializeCriticalSection(&mCriticalSection);
+    InitializeCriticalSection(&mCriticalSection);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 
 CritSect::~CritSect(void)
 {
-	DeleteCriticalSection(&mCriticalSection);
+    DeleteCriticalSection(&mCriticalSection);
 }

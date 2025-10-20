@@ -1,15 +1,15 @@
 #ifndef __SCROLLLISTENER_H__
 #define __SCROLLLISTENER_H__
 
-namespace Sexy 
+namespace Sexy
 {
 
-class ScrollListener 
+class ScrollListener
 {
-public:
-	virtual void ScrollPosition(int theId, double thePosition) = 0;
+   public:
+    virtual void ScrollPosition(int theId, double thePosition) = 0;
 };
 
-}
+}  // namespace Sexy
 
-#endif // __SCROLLLISTENER_H__
+#endif  // __SCROLLLISTENER_H__

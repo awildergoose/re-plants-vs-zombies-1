@@ -10,9 +10,12 @@ if(MSVC)
     set(zlib_binary "zlibstaticd.lib")
     set(libpng_binary "libpng16_staticd.lib")
 else() # linux
-    set(libjpeg_binary "libjpeg.a")
-    set(zlib_binary "libzlibstatic.a")
-    set(libpng_binary "libpng.a")
+    set(libjpeg_binary "jpeg.lib")
+    set(zlib_binary "zlibstatic.lib")
+    set(libpng_binary "libpng16_staticd.lib")
+#    set(libjpeg_binary "libjpeg.a")
+#    set(zlib_binary "libzlibstatic.a")
+#    set(libpng_binary "libpng.a")
 endif()
 
 set(libjpeg_dir "${CMAKE_BINARY_DIR}/libjpeg")
@@ -25,6 +28,7 @@ ExternalProject_Add(libjpeg-src
                         "-DCMAKE_INSTALL_PREFIX=${libjpeg_dir}/install" # unused, have to specify
                         "-DCMAKE_C_FLAGS=${universal_cflags}"
                         "-DENABLE_SHARED=FALSE"
+                        "-DENABLE_STATIC=TRUE"
                         "-DWITH_TURBOJPEG=FALSE"
                         "-Wno-dev"
 
@@ -42,6 +46,9 @@ ExternalProject_Add(libjpeg-src
     USES_TERMINAL_UPDATE TRUE
     USES_TERMINAL_CONFIGURE TRUE
     USES_TERMINAL_BUILD TRUE
+    UPDATE_DISCONNECTED TRUE
+    GIT_SHALLOW TRUE
+    GIT_PROGRESS TRUE
     UPDATE_DISCONNECTED TRUE
 )
 
@@ -75,6 +82,9 @@ ExternalProject_Add(zlib-src
     USES_TERMINAL_BUILD     TRUE
     USES_TERMINAL_INSTALL   TRUE
     UPDATE_DISCONNECTED     TRUE
+    GIT_SHALLOW TRUE
+    GIT_PROGRESS TRUE
+    UPDATE_DISCONNECTED TRUE
 )
 
 ################################################################################
@@ -114,6 +124,9 @@ ExternalProject_Add(libpng-src
     USES_TERMINAL_BUILD     TRUE
     USES_TERMINAL_INSTALL   TRUE
     UPDATE_DISCONNECTED     TRUE
+    GIT_SHALLOW TRUE
+    GIT_PROGRESS TRUE
+    UPDATE_DISCONNECTED TRUE
 )
 
 add_library(jpeg STATIC IMPORTED)

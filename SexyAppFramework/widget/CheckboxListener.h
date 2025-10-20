@@ -6,10 +6,10 @@ namespace Sexy
 
 class CheckboxListener
 {
-public:
-	virtual void			CheckboxChecked(int theId, bool checked) = 0;
+   public:
+    virtual void CheckboxChecked(int theId, bool checked) = 0;
 };
 
-}
+}  // namespace Sexy
 
-#endif //__CHECKBOX_LISTENER__
+#endif  //__CHECKBOX_LISTENER__

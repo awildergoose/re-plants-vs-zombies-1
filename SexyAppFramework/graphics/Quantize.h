@@ -6,8 +6,9 @@
 namespace Sexy
 {
 
-bool Quantize8Bit(const ulong* theSrcBits, int theWidth, int theHeight, uchar* theDestColorIndices, ulong* theDestColorTable);
+bool Quantize8Bit(const ulong* theSrcBits, int theWidth, int theHeight, uchar* theDestColorIndices,
+                  ulong* theDestColorTable);
 
 }
 
-#endif //__QUANTIZE_H__
+#endif  //__QUANTIZE_H__

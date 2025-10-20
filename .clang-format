@@ -1,0 +1,11 @@
+BasedOnStyle: Google
+IndentWidth: 4
+ColumnLimit: 120
+SortIncludes: false
+BreakBeforeBraces: Allman
+AllowShortFunctionsOnASingleLine: Empty
+SpaceBeforeParens: ControlStatements
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+DerivePointerAlignment: false
+PointerAlignment: Left

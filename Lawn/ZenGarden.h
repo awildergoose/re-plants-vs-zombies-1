@@ -17,40 +17,40 @@ class HitResult;
 class PottedPlant;
 namespace Sexy
 {
-    class Graphics;
+class Graphics;
 }
 using namespace Sexy;
 
 class SpecialGridPlacement
 {
-public:
-    int                     mPixelX;
-    int                     mPixelY;
-    int                     mGridX;
-    int                     mGridY;
+   public:
+    int mPixelX;
+    int mPixelY;
+    int mGridX;
+    int mGridY;
 };
 
 class ZenGarden
 {
-public:
-    LawnApp*                mApp;           //+0x0
-    Board*                  mBoard;         //+0x4
-    GardenType              mGardenType;    //+0x8
+   public:
+    LawnApp*   mApp;         //+0x0
+    Board*     mBoard;       //+0x4
+    GardenType mGardenType;  //+0x8
 
-public:
+   public:
     ZenGarden();
 
-    void                    ZenGardenInitLevel();
-    /*inline*/ void         DrawPottedPlantIcon(Graphics* g, float x, float y, PottedPlant* thePottedPlant);
-    void                    DrawPottedPlant(Graphics* g, float x, float y, PottedPlant* thePottedPlant, float theScale, bool theDrawPot);
-    bool                    IsZenGardenFull(bool theIncludeDroppedPresents);
-    void                    FindOpenZenGardenSpot(int& theSpotX, int& theSpotY);
-    void                    AddPottedPlant(PottedPlant* thePottedPlant);
-    void                    MouseDownWithTool(int x, int y, CursorType theCursorType);
-    void                    MovePlant(Plant* thePlant, int theGridX, int theGridY);
-    void                    MouseDownWithMoneySign(Plant* thePlant);
-    Plant*                  PlacePottedPlant(intptr_t thePottedPlantIndex);
-    float                   PlantPottedDrawHeightOffset(SeedType theSeedType, float theScale);
+    void            ZenGardenInitLevel();
+    /*inline*/ void DrawPottedPlantIcon(Graphics* g, float x, float y, PottedPlant* thePottedPlant);
+    void   DrawPottedPlant(Graphics* g, float x, float y, PottedPlant* thePottedPlant, float theScale, bool theDrawPot);
+    bool   IsZenGardenFull(bool theIncludeDroppedPresents);
+    void   FindOpenZenGardenSpot(int& theSpotX, int& theSpotY);
+    void   AddPottedPlant(PottedPlant* thePottedPlant);
+    void   MouseDownWithTool(int x, int y, CursorType theCursorType);
+    void   MovePlant(Plant* thePlant, int theGridX, int theGridY);
+    void   MouseDownWithMoneySign(Plant* thePlant);
+    Plant* PlacePottedPlant(intptr_t thePottedPlantIndex);
+    float  PlantPottedDrawHeightOffset(SeedType theSeedType, float theScale);
     static float            ZenPlantOffsetX(PottedPlant* thePottedPlant);
     int                     GetPlantSellPrice(Plant* thePlant);
     void                    ZenGardenUpdate();

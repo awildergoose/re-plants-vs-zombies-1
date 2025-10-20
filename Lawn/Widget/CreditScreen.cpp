@@ -13,377 +13,377 @@
 #include "../../Sexy.TodLib/EffectSystem.h"
 #include "../../Sexy.TodLib/TodStringFile.h"
 
-static CreditsTiming gCreditsTiming[] = {  //0x6A1AD8
-    {  128.5f,      CreditWordType::WORD_AW ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  133.0f,      CreditWordType::WORD_OH ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  136.5f,      CreditWordType::WORD_EE ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  140.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  141.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  143.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  145.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  149.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  153.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  155.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  159.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  163.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  171.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  172.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  173.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  175.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  177.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  181.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  185.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  187.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  191.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  193.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  199.0f,      CreditWordType::WORD_AA ,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  203.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  205.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FLY_ON    },
-    {  207.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  209.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  213.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  217.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  219.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  223.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  227.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  231.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  234.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  235.0f,      CreditWordType::WORD_EE ,       150,     CreditBrainType::BRAIN_FAST_ON   },
-    {  237.0f,      CreditWordType::WORD_OH ,       220,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  239.0f,      CreditWordType::WORD_AW ,       307,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  241.0f,      CreditWordType::WORD_AW ,       390,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  245.0f,      CreditWordType::WORD_EE ,       452,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  249.0f,      CreditWordType::WORD_AW ,       512,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  251.0f,      CreditWordType::WORD_AW ,       573,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  255.0f,      CreditWordType::WORD_AW ,       630,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  257.0f,      CreditWordType::WORD_AW ,       656,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  261.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  262.0f,      CreditWordType::WORD_AA ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  266.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  266.5f,      CreditWordType::WORD_AW ,        96,     CreditBrainType::BRAIN_FAST_ON   },
-    {  268.5f,      CreditWordType::WORD_OH ,       154,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  270.5f,      CreditWordType::WORD_OH ,       244,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  272.5f,      CreditWordType::WORD_AW ,       329,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  276.5f,      CreditWordType::WORD_AW ,       419,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  279.5f,      CreditWordType::WORD_AW ,       506,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  281.5f,      CreditWordType::WORD_AW ,       597,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  284.5f,      CreditWordType::WORD_AW ,       671,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  286.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  287.0f,      CreditWordType::WORD_OH ,        48,     CreditBrainType::BRAIN_FAST_ON   },
-    {  288.0f,      CreditWordType::WORD_AW ,       125,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  290.0f,      CreditWordType::WORD_OH ,       193,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  291.0f,      CreditWordType::WORD_EE ,       254,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  294.5f,      CreditWordType::WORD_AW ,       318,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  295.0f,      CreditWordType::WORD_AW ,       375,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  296.0f,      CreditWordType::WORD_AW ,       438,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  297.0f,      CreditWordType::WORD_AW ,       480,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  299.0f,      CreditWordType::WORD_AW ,       556,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  301.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  303.0f,      CreditWordType::WORD_AW ,       675,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  305.0f,      CreditWordType::WORD_AW ,       744,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  307.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  309.5f,      CreditWordType::WORD_OFF,       207,     CreditBrainType::BRAIN_FLY_ON    },
-    {  310.5f,      CreditWordType::WORD_OFF,       287,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  311.5f,      CreditWordType::WORD_OFF,       365,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  313.5f,      CreditWordType::WORD_OFF,       435,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  315.5f,      CreditWordType::WORD_OFF,       518,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  317.5f,      CreditWordType::WORD_OFF,       603,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  318.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FAST_OFF  },
-    {  319.5f,      CreditWordType::WORD_OFF,       198,     CreditBrainType::BRAIN_FAST_ON   },
-    {  320.5f,      CreditWordType::WORD_OFF,       264,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  322.5f,      CreditWordType::WORD_OFF,       335,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  323.5f,      CreditWordType::WORD_OFF,       411,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  324.5f,      CreditWordType::WORD_OFF,       474,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  326.5f,      CreditWordType::WORD_OFF,       527,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  328.5f,      CreditWordType::WORD_OFF,       595,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  332.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  337.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  339.5f,      CreditWordType::WORD_AW ,       190,     CreditBrainType::BRAIN_FLY_ON    },
-    {  340.5f,      CreditWordType::WORD_AW ,       260,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  342.5f,      CreditWordType::WORD_AA ,       314,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  344.5f,      CreditWordType::WORD_AW ,       364,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  347.5f,      CreditWordType::WORD_AW ,       426,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  349.5f,      CreditWordType::WORD_OH ,       474,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  350.5f,      CreditWordType::WORD_AW ,       538,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  352.5f,      CreditWordType::WORD_EE ,       606,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  353.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FAST_OFF  },
-    {  354.5f,      CreditWordType::WORD_EE ,       187,     CreditBrainType::BRAIN_FAST_ON   },
-    {  356.5f,      CreditWordType::WORD_AW ,       242,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  358.5f,      CreditWordType::WORD_OH ,       280,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  359.5f,      CreditWordType::WORD_AW ,       340,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  360.5f,      CreditWordType::WORD_AW ,       394,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  361.5f,      CreditWordType::WORD_EE ,       439,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  363.5f,      CreditWordType::WORD_AW ,       500,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  364.5f,      CreditWordType::WORD_AW ,       550,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  366.5f,      CreditWordType::WORD_EE ,       606,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  369.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  371.5f,      CreditWordType::WORD_OFF,       200,     CreditBrainType::BRAIN_FLY_ON    },
-    {  372.5f,      CreditWordType::WORD_OH ,       258,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  374.5f,      CreditWordType::WORD_OFF,       332,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  376.5f,      CreditWordType::WORD_OFF,       416,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  378.5f,      CreditWordType::WORD_OFF,       494,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  380.5f,      CreditWordType::WORD_OFF,       576,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  381.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FAST_OFF  },
-    {  382.5f,      CreditWordType::WORD_OFF,       255,     CreditBrainType::BRAIN_FAST_ON   },
-    {  384.5f,      CreditWordType::WORD_OFF,       322,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  386.5f,      CreditWordType::WORD_OFF,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  388.5f,      CreditWordType::WORD_OFF,       474,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  390.5f,      CreditWordType::WORD_OFF,       533,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  394.5f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  522.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  523.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  525.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  527.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  531.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  535.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  537.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  541.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  545.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  549.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  554.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  555.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  557.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  559.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  563.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  567.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  569.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  573.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  575.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  581.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  582.0f,      CreditWordType::WORD_AA ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  586.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  587.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  589.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  591.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  595.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  599.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  601.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  605.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  609.0f,      CreditWordType::WORD_AW ,       619,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  613.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  616.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  617.0f,      CreditWordType::WORD_EE ,       150,     CreditBrainType::BRAIN_FAST_ON   },
-    {  619.0f,      CreditWordType::WORD_OH ,       220,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  621.0f,      CreditWordType::WORD_AW ,       307,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  623.0f,      CreditWordType::WORD_AW ,       390,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  627.0f,      CreditWordType::WORD_EE ,       452,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  631.0f,      CreditWordType::WORD_AW ,       512,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  633.0f,      CreditWordType::WORD_AW ,       573,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  637.0f,      CreditWordType::WORD_AW ,       630,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  639.0f,      CreditWordType::WORD_AW ,       656,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  643.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  644.0f,      CreditWordType::WORD_AA ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  648.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  649.0f,      CreditWordType::WORD_AA ,       196,     CreditBrainType::BRAIN_FAST_ON   },
-    {  651.0f,      CreditWordType::WORD_EE ,       247,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  653.0f,      CreditWordType::WORD_AW ,       299,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  655.0f,      CreditWordType::WORD_AW ,       371,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  658.0f,      CreditWordType::WORD_OH ,       443,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  659.0f,      CreditWordType::WORD_EE ,       475,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  661.0f,      CreditWordType::WORD_AW ,       512,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  662.0f,      CreditWordType::WORD_AA ,       544,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  664.0f,      CreditWordType::WORD_OH ,       573,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  667.0f,      CreditWordType::WORD_AA ,       610,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  669.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FAST_OFF  },
-    {  670.0f,      CreditWordType::WORD_OFF,        48,     CreditBrainType::BRAIN_FAST_ON   },
-    {  671.0f,      CreditWordType::WORD_OFF,       110,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  673.0f,      CreditWordType::WORD_OFF,       185,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  674.0f,      CreditWordType::WORD_OFF,       262,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  676.0f,      CreditWordType::WORD_OFF,       317,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  677.0f,      CreditWordType::WORD_OFF,       357,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  678.0f,      CreditWordType::WORD_OFF,       417,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  679.0f,      CreditWordType::WORD_OFF,       491,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  682.0f,      CreditWordType::WORD_OFF,       558,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  685.0f,      CreditWordType::WORD_OFF,       628,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  687.0f,      CreditWordType::WORD_OFF,       720,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  689.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  690.0f,      CreditWordType::WORD_OFF,       172,     CreditBrainType::BRAIN_FAST_ON   },
-    {  692.0f,      CreditWordType::WORD_OFF,       263,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  694.0f,      CreditWordType::WORD_OFF,       346,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  696.0f,      CreditWordType::WORD_OFF,       423,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  698.0f,      CreditWordType::WORD_OFF,       480,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  700.0f,      CreditWordType::WORD_OFF,       536,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  702.0f,      CreditWordType::WORD_OFF,       583,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  705.0f,      CreditWordType::WORD_OFF,       633,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  708.0f,      CreditWordType::WORD_OFF,       668,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  712.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  719.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  720.0f,      CreditWordType::WORD_OFF,       182,     CreditBrainType::BRAIN_FAST_ON   },
-    {  722.0f,      CreditWordType::WORD_OFF,       267,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  724.0f,      CreditWordType::WORD_OFF,       331,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  726.0f,      CreditWordType::WORD_OFF,       371,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  729.0f,      CreditWordType::WORD_OFF,       434,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  731.0f,      CreditWordType::WORD_OFF,       486,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  732.0f,      CreditWordType::WORD_OFF,       562,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  734.0f,      CreditWordType::WORD_OFF,       617,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  735.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FAST_OFF  },
-    {  736.0f,      CreditWordType::WORD_AW ,       148,     CreditBrainType::BRAIN_FAST_ON   },
-    {  738.0f,      CreditWordType::WORD_AW ,       211,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  740.0f,      CreditWordType::WORD_EE ,       298,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  742.0f,      CreditWordType::WORD_OH ,       367,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  744.0f,      CreditWordType::WORD_AW ,       440,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  746.0f,      CreditWordType::WORD_OH ,       506,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  747.0f,      CreditWordType::WORD_AW ,       533,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  748.0f,      CreditWordType::WORD_AW ,       601,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  749.0f,      CreditWordType::WORD_AW ,       645,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  750.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FAST_OFF  },
-    {  753.0f,      CreditWordType::WORD_OFF,       123,     CreditBrainType::BRAIN_FLY_ON    },
-    {  755.0f,      CreditWordType::WORD_OFF,       195,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  757.0f,      CreditWordType::WORD_OFF,       255,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  759.0f,      CreditWordType::WORD_OFF,       312,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  761.0f,      CreditWordType::WORD_OFF,       378,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  763.0f,      CreditWordType::WORD_OFF,       443,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  765.0f,      CreditWordType::WORD_OFF,       516,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  767.0f,      CreditWordType::WORD_OFF,       563,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  770.0f,      CreditWordType::WORD_OFF,       588,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  773.0f,      CreditWordType::WORD_OFF,       657,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  777.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  907.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  908.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  910.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  912.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  916.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  920.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  922.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  926.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  930.0f,      CreditWordType::WORD_AW ,       616,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  934.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  939.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  940.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  942.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  944.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  948.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  952.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  954.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  958.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  960.0f,      CreditWordType::WORD_AW ,       616,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  966.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    {  967.0f,      CreditWordType::WORD_AA ,         0,     CreditBrainType::BRAIN_OFF       },
-    {  971.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    {  972.0f,      CreditWordType::WORD_AW ,       214,     CreditBrainType::BRAIN_FAST_ON   },
-    {  974.0f,      CreditWordType::WORD_AW ,       297,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  976.0f,      CreditWordType::WORD_AW ,       348,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  980.0f,      CreditWordType::WORD_EE ,       400,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  984.0f,      CreditWordType::WORD_AW ,       455,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  986.0f,      CreditWordType::WORD_OH ,       523,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  990.0f,      CreditWordType::WORD_AW ,       593,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  994.0f,      CreditWordType::WORD_AW ,       616,     CreditBrainType::BRAIN_NEXT_WORD },
-    {  998.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    { 1001.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       },
-    { 1002.0f,      CreditWordType::WORD_EE ,       150,     CreditBrainType::BRAIN_FAST_ON   },
-    { 1004.0f,      CreditWordType::WORD_OH ,       220,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1006.0f,      CreditWordType::WORD_AW ,       307,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1008.0f,      CreditWordType::WORD_AW ,       390,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1012.0f,      CreditWordType::WORD_EE ,       452,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1016.0f,      CreditWordType::WORD_AW ,       512,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1018.0f,      CreditWordType::WORD_AW ,       573,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1022.0f,      CreditWordType::WORD_AW ,       630,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1024.0f,      CreditWordType::WORD_AW ,       656,     CreditBrainType::BRAIN_NEXT_WORD },
-    { 1028.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_FLY_OFF   },
-    { 1029.0f,      CreditWordType::WORD_AA ,         0,     CreditBrainType::BRAIN_OFF       },
-    { 1033.0f,      CreditWordType::WORD_OFF,         0,     CreditBrainType::BRAIN_OFF       }
-};
-static int gCreditsTimingCount = LENGTH(gCreditsTiming);  //0x6A2B98
+static CreditsTiming gCreditsTiming[]    = {  // 0x6A1AD8
+    {128.5f, CreditWordType::WORD_AW, 0, CreditBrainType::BRAIN_OFF},
+    {133.0f, CreditWordType::WORD_OH, 0, CreditBrainType::BRAIN_OFF},
+    {136.5f, CreditWordType::WORD_EE, 0, CreditBrainType::BRAIN_OFF},
+    {140.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {141.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_NEXT_WORD},
+    {143.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {145.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {149.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {153.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {155.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {159.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {163.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {171.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {172.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {173.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {175.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {177.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {181.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {185.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {187.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {191.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {193.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {199.0f, CreditWordType::WORD_AA, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {203.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {205.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FLY_ON},
+    {207.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {209.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {213.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {217.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {219.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {223.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {227.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {231.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {234.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {235.0f, CreditWordType::WORD_EE, 150, CreditBrainType::BRAIN_FAST_ON},
+    {237.0f, CreditWordType::WORD_OH, 220, CreditBrainType::BRAIN_NEXT_WORD},
+    {239.0f, CreditWordType::WORD_AW, 307, CreditBrainType::BRAIN_NEXT_WORD},
+    {241.0f, CreditWordType::WORD_AW, 390, CreditBrainType::BRAIN_NEXT_WORD},
+    {245.0f, CreditWordType::WORD_EE, 452, CreditBrainType::BRAIN_NEXT_WORD},
+    {249.0f, CreditWordType::WORD_AW, 512, CreditBrainType::BRAIN_NEXT_WORD},
+    {251.0f, CreditWordType::WORD_AW, 573, CreditBrainType::BRAIN_NEXT_WORD},
+    {255.0f, CreditWordType::WORD_AW, 630, CreditBrainType::BRAIN_NEXT_WORD},
+    {257.0f, CreditWordType::WORD_AW, 656, CreditBrainType::BRAIN_NEXT_WORD},
+    {261.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {262.0f, CreditWordType::WORD_AA, 0, CreditBrainType::BRAIN_OFF},
+    {266.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {266.5f, CreditWordType::WORD_AW, 96, CreditBrainType::BRAIN_FAST_ON},
+    {268.5f, CreditWordType::WORD_OH, 154, CreditBrainType::BRAIN_NEXT_WORD},
+    {270.5f, CreditWordType::WORD_OH, 244, CreditBrainType::BRAIN_NEXT_WORD},
+    {272.5f, CreditWordType::WORD_AW, 329, CreditBrainType::BRAIN_NEXT_WORD},
+    {276.5f, CreditWordType::WORD_AW, 419, CreditBrainType::BRAIN_NEXT_WORD},
+    {279.5f, CreditWordType::WORD_AW, 506, CreditBrainType::BRAIN_NEXT_WORD},
+    {281.5f, CreditWordType::WORD_AW, 597, CreditBrainType::BRAIN_NEXT_WORD},
+    {284.5f, CreditWordType::WORD_AW, 671, CreditBrainType::BRAIN_NEXT_WORD},
+    {286.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {287.0f, CreditWordType::WORD_OH, 48, CreditBrainType::BRAIN_FAST_ON},
+    {288.0f, CreditWordType::WORD_AW, 125, CreditBrainType::BRAIN_NEXT_WORD},
+    {290.0f, CreditWordType::WORD_OH, 193, CreditBrainType::BRAIN_NEXT_WORD},
+    {291.0f, CreditWordType::WORD_EE, 254, CreditBrainType::BRAIN_NEXT_WORD},
+    {294.5f, CreditWordType::WORD_AW, 318, CreditBrainType::BRAIN_NEXT_WORD},
+    {295.0f, CreditWordType::WORD_AW, 375, CreditBrainType::BRAIN_NEXT_WORD},
+    {296.0f, CreditWordType::WORD_AW, 438, CreditBrainType::BRAIN_NEXT_WORD},
+    {297.0f, CreditWordType::WORD_AW, 480, CreditBrainType::BRAIN_NEXT_WORD},
+    {299.0f, CreditWordType::WORD_AW, 556, CreditBrainType::BRAIN_NEXT_WORD},
+    {301.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {303.0f, CreditWordType::WORD_AW, 675, CreditBrainType::BRAIN_NEXT_WORD},
+    {305.0f, CreditWordType::WORD_AW, 744, CreditBrainType::BRAIN_NEXT_WORD},
+    {307.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {309.5f, CreditWordType::WORD_OFF, 207, CreditBrainType::BRAIN_FLY_ON},
+    {310.5f, CreditWordType::WORD_OFF, 287, CreditBrainType::BRAIN_NEXT_WORD},
+    {311.5f, CreditWordType::WORD_OFF, 365, CreditBrainType::BRAIN_NEXT_WORD},
+    {313.5f, CreditWordType::WORD_OFF, 435, CreditBrainType::BRAIN_NEXT_WORD},
+    {315.5f, CreditWordType::WORD_OFF, 518, CreditBrainType::BRAIN_NEXT_WORD},
+    {317.5f, CreditWordType::WORD_OFF, 603, CreditBrainType::BRAIN_NEXT_WORD},
+    {318.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FAST_OFF},
+    {319.5f, CreditWordType::WORD_OFF, 198, CreditBrainType::BRAIN_FAST_ON},
+    {320.5f, CreditWordType::WORD_OFF, 264, CreditBrainType::BRAIN_NEXT_WORD},
+    {322.5f, CreditWordType::WORD_OFF, 335, CreditBrainType::BRAIN_NEXT_WORD},
+    {323.5f, CreditWordType::WORD_OFF, 411, CreditBrainType::BRAIN_NEXT_WORD},
+    {324.5f, CreditWordType::WORD_OFF, 474, CreditBrainType::BRAIN_NEXT_WORD},
+    {326.5f, CreditWordType::WORD_OFF, 527, CreditBrainType::BRAIN_NEXT_WORD},
+    {328.5f, CreditWordType::WORD_OFF, 595, CreditBrainType::BRAIN_NEXT_WORD},
+    {332.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {337.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {339.5f, CreditWordType::WORD_AW, 190, CreditBrainType::BRAIN_FLY_ON},
+    {340.5f, CreditWordType::WORD_AW, 260, CreditBrainType::BRAIN_NEXT_WORD},
+    {342.5f, CreditWordType::WORD_AA, 314, CreditBrainType::BRAIN_NEXT_WORD},
+    {344.5f, CreditWordType::WORD_AW, 364, CreditBrainType::BRAIN_NEXT_WORD},
+    {347.5f, CreditWordType::WORD_AW, 426, CreditBrainType::BRAIN_NEXT_WORD},
+    {349.5f, CreditWordType::WORD_OH, 474, CreditBrainType::BRAIN_NEXT_WORD},
+    {350.5f, CreditWordType::WORD_AW, 538, CreditBrainType::BRAIN_NEXT_WORD},
+    {352.5f, CreditWordType::WORD_EE, 606, CreditBrainType::BRAIN_NEXT_WORD},
+    {353.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FAST_OFF},
+    {354.5f, CreditWordType::WORD_EE, 187, CreditBrainType::BRAIN_FAST_ON},
+    {356.5f, CreditWordType::WORD_AW, 242, CreditBrainType::BRAIN_NEXT_WORD},
+    {358.5f, CreditWordType::WORD_OH, 280, CreditBrainType::BRAIN_NEXT_WORD},
+    {359.5f, CreditWordType::WORD_AW, 340, CreditBrainType::BRAIN_NEXT_WORD},
+    {360.5f, CreditWordType::WORD_AW, 394, CreditBrainType::BRAIN_NEXT_WORD},
+    {361.5f, CreditWordType::WORD_EE, 439, CreditBrainType::BRAIN_NEXT_WORD},
+    {363.5f, CreditWordType::WORD_AW, 500, CreditBrainType::BRAIN_NEXT_WORD},
+    {364.5f, CreditWordType::WORD_AW, 550, CreditBrainType::BRAIN_NEXT_WORD},
+    {366.5f, CreditWordType::WORD_EE, 606, CreditBrainType::BRAIN_NEXT_WORD},
+    {369.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {371.5f, CreditWordType::WORD_OFF, 200, CreditBrainType::BRAIN_FLY_ON},
+    {372.5f, CreditWordType::WORD_OH, 258, CreditBrainType::BRAIN_NEXT_WORD},
+    {374.5f, CreditWordType::WORD_OFF, 332, CreditBrainType::BRAIN_NEXT_WORD},
+    {376.5f, CreditWordType::WORD_OFF, 416, CreditBrainType::BRAIN_NEXT_WORD},
+    {378.5f, CreditWordType::WORD_OFF, 494, CreditBrainType::BRAIN_NEXT_WORD},
+    {380.5f, CreditWordType::WORD_OFF, 576, CreditBrainType::BRAIN_NEXT_WORD},
+    {381.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FAST_OFF},
+    {382.5f, CreditWordType::WORD_OFF, 255, CreditBrainType::BRAIN_FAST_ON},
+    {384.5f, CreditWordType::WORD_OFF, 322, CreditBrainType::BRAIN_NEXT_WORD},
+    {386.5f, CreditWordType::WORD_OFF, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {388.5f, CreditWordType::WORD_OFF, 474, CreditBrainType::BRAIN_NEXT_WORD},
+    {390.5f, CreditWordType::WORD_OFF, 533, CreditBrainType::BRAIN_NEXT_WORD},
+    {394.5f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {522.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {523.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {525.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {527.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {531.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {535.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {537.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {541.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {545.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {549.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {554.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {555.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {557.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {559.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {563.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {567.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {569.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {573.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {575.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {581.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {582.0f, CreditWordType::WORD_AA, 0, CreditBrainType::BRAIN_OFF},
+    {586.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {587.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {589.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {591.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {595.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {599.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {601.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {605.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {609.0f, CreditWordType::WORD_AW, 619, CreditBrainType::BRAIN_NEXT_WORD},
+    {613.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {616.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {617.0f, CreditWordType::WORD_EE, 150, CreditBrainType::BRAIN_FAST_ON},
+    {619.0f, CreditWordType::WORD_OH, 220, CreditBrainType::BRAIN_NEXT_WORD},
+    {621.0f, CreditWordType::WORD_AW, 307, CreditBrainType::BRAIN_NEXT_WORD},
+    {623.0f, CreditWordType::WORD_AW, 390, CreditBrainType::BRAIN_NEXT_WORD},
+    {627.0f, CreditWordType::WORD_EE, 452, CreditBrainType::BRAIN_NEXT_WORD},
+    {631.0f, CreditWordType::WORD_AW, 512, CreditBrainType::BRAIN_NEXT_WORD},
+    {633.0f, CreditWordType::WORD_AW, 573, CreditBrainType::BRAIN_NEXT_WORD},
+    {637.0f, CreditWordType::WORD_AW, 630, CreditBrainType::BRAIN_NEXT_WORD},
+    {639.0f, CreditWordType::WORD_AW, 656, CreditBrainType::BRAIN_NEXT_WORD},
+    {643.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {644.0f, CreditWordType::WORD_AA, 0, CreditBrainType::BRAIN_OFF},
+    {648.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {649.0f, CreditWordType::WORD_AA, 196, CreditBrainType::BRAIN_FAST_ON},
+    {651.0f, CreditWordType::WORD_EE, 247, CreditBrainType::BRAIN_NEXT_WORD},
+    {653.0f, CreditWordType::WORD_AW, 299, CreditBrainType::BRAIN_NEXT_WORD},
+    {655.0f, CreditWordType::WORD_AW, 371, CreditBrainType::BRAIN_NEXT_WORD},
+    {658.0f, CreditWordType::WORD_OH, 443, CreditBrainType::BRAIN_NEXT_WORD},
+    {659.0f, CreditWordType::WORD_EE, 475, CreditBrainType::BRAIN_NEXT_WORD},
+    {661.0f, CreditWordType::WORD_AW, 512, CreditBrainType::BRAIN_NEXT_WORD},
+    {662.0f, CreditWordType::WORD_AA, 544, CreditBrainType::BRAIN_NEXT_WORD},
+    {664.0f, CreditWordType::WORD_OH, 573, CreditBrainType::BRAIN_NEXT_WORD},
+    {667.0f, CreditWordType::WORD_AA, 610, CreditBrainType::BRAIN_NEXT_WORD},
+    {669.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FAST_OFF},
+    {670.0f, CreditWordType::WORD_OFF, 48, CreditBrainType::BRAIN_FAST_ON},
+    {671.0f, CreditWordType::WORD_OFF, 110, CreditBrainType::BRAIN_NEXT_WORD},
+    {673.0f, CreditWordType::WORD_OFF, 185, CreditBrainType::BRAIN_NEXT_WORD},
+    {674.0f, CreditWordType::WORD_OFF, 262, CreditBrainType::BRAIN_NEXT_WORD},
+    {676.0f, CreditWordType::WORD_OFF, 317, CreditBrainType::BRAIN_NEXT_WORD},
+    {677.0f, CreditWordType::WORD_OFF, 357, CreditBrainType::BRAIN_NEXT_WORD},
+    {678.0f, CreditWordType::WORD_OFF, 417, CreditBrainType::BRAIN_NEXT_WORD},
+    {679.0f, CreditWordType::WORD_OFF, 491, CreditBrainType::BRAIN_NEXT_WORD},
+    {682.0f, CreditWordType::WORD_OFF, 558, CreditBrainType::BRAIN_NEXT_WORD},
+    {685.0f, CreditWordType::WORD_OFF, 628, CreditBrainType::BRAIN_NEXT_WORD},
+    {687.0f, CreditWordType::WORD_OFF, 720, CreditBrainType::BRAIN_NEXT_WORD},
+    {689.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {690.0f, CreditWordType::WORD_OFF, 172, CreditBrainType::BRAIN_FAST_ON},
+    {692.0f, CreditWordType::WORD_OFF, 263, CreditBrainType::BRAIN_NEXT_WORD},
+    {694.0f, CreditWordType::WORD_OFF, 346, CreditBrainType::BRAIN_NEXT_WORD},
+    {696.0f, CreditWordType::WORD_OFF, 423, CreditBrainType::BRAIN_NEXT_WORD},
+    {698.0f, CreditWordType::WORD_OFF, 480, CreditBrainType::BRAIN_NEXT_WORD},
+    {700.0f, CreditWordType::WORD_OFF, 536, CreditBrainType::BRAIN_NEXT_WORD},
+    {702.0f, CreditWordType::WORD_OFF, 583, CreditBrainType::BRAIN_NEXT_WORD},
+    {705.0f, CreditWordType::WORD_OFF, 633, CreditBrainType::BRAIN_NEXT_WORD},
+    {708.0f, CreditWordType::WORD_OFF, 668, CreditBrainType::BRAIN_NEXT_WORD},
+    {712.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {719.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {720.0f, CreditWordType::WORD_OFF, 182, CreditBrainType::BRAIN_FAST_ON},
+    {722.0f, CreditWordType::WORD_OFF, 267, CreditBrainType::BRAIN_NEXT_WORD},
+    {724.0f, CreditWordType::WORD_OFF, 331, CreditBrainType::BRAIN_NEXT_WORD},
+    {726.0f, CreditWordType::WORD_OFF, 371, CreditBrainType::BRAIN_NEXT_WORD},
+    {729.0f, CreditWordType::WORD_OFF, 434, CreditBrainType::BRAIN_NEXT_WORD},
+    {731.0f, CreditWordType::WORD_OFF, 486, CreditBrainType::BRAIN_NEXT_WORD},
+    {732.0f, CreditWordType::WORD_OFF, 562, CreditBrainType::BRAIN_NEXT_WORD},
+    {734.0f, CreditWordType::WORD_OFF, 617, CreditBrainType::BRAIN_NEXT_WORD},
+    {735.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FAST_OFF},
+    {736.0f, CreditWordType::WORD_AW, 148, CreditBrainType::BRAIN_FAST_ON},
+    {738.0f, CreditWordType::WORD_AW, 211, CreditBrainType::BRAIN_NEXT_WORD},
+    {740.0f, CreditWordType::WORD_EE, 298, CreditBrainType::BRAIN_NEXT_WORD},
+    {742.0f, CreditWordType::WORD_OH, 367, CreditBrainType::BRAIN_NEXT_WORD},
+    {744.0f, CreditWordType::WORD_AW, 440, CreditBrainType::BRAIN_NEXT_WORD},
+    {746.0f, CreditWordType::WORD_OH, 506, CreditBrainType::BRAIN_NEXT_WORD},
+    {747.0f, CreditWordType::WORD_AW, 533, CreditBrainType::BRAIN_NEXT_WORD},
+    {748.0f, CreditWordType::WORD_AW, 601, CreditBrainType::BRAIN_NEXT_WORD},
+    {749.0f, CreditWordType::WORD_AW, 645, CreditBrainType::BRAIN_NEXT_WORD},
+    {750.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FAST_OFF},
+    {753.0f, CreditWordType::WORD_OFF, 123, CreditBrainType::BRAIN_FLY_ON},
+    {755.0f, CreditWordType::WORD_OFF, 195, CreditBrainType::BRAIN_NEXT_WORD},
+    {757.0f, CreditWordType::WORD_OFF, 255, CreditBrainType::BRAIN_NEXT_WORD},
+    {759.0f, CreditWordType::WORD_OFF, 312, CreditBrainType::BRAIN_NEXT_WORD},
+    {761.0f, CreditWordType::WORD_OFF, 378, CreditBrainType::BRAIN_NEXT_WORD},
+    {763.0f, CreditWordType::WORD_OFF, 443, CreditBrainType::BRAIN_NEXT_WORD},
+    {765.0f, CreditWordType::WORD_OFF, 516, CreditBrainType::BRAIN_NEXT_WORD},
+    {767.0f, CreditWordType::WORD_OFF, 563, CreditBrainType::BRAIN_NEXT_WORD},
+    {770.0f, CreditWordType::WORD_OFF, 588, CreditBrainType::BRAIN_NEXT_WORD},
+    {773.0f, CreditWordType::WORD_OFF, 657, CreditBrainType::BRAIN_NEXT_WORD},
+    {777.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {907.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {908.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {910.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {912.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {916.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {920.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {922.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {926.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {930.0f, CreditWordType::WORD_AW, 616, CreditBrainType::BRAIN_NEXT_WORD},
+    {934.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {939.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {940.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {942.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {944.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {948.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {952.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {954.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {958.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {960.0f, CreditWordType::WORD_AW, 616, CreditBrainType::BRAIN_NEXT_WORD},
+    {966.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {967.0f, CreditWordType::WORD_AA, 0, CreditBrainType::BRAIN_OFF},
+    {971.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {972.0f, CreditWordType::WORD_AW, 214, CreditBrainType::BRAIN_FAST_ON},
+    {974.0f, CreditWordType::WORD_AW, 297, CreditBrainType::BRAIN_NEXT_WORD},
+    {976.0f, CreditWordType::WORD_AW, 348, CreditBrainType::BRAIN_NEXT_WORD},
+    {980.0f, CreditWordType::WORD_EE, 400, CreditBrainType::BRAIN_NEXT_WORD},
+    {984.0f, CreditWordType::WORD_AW, 455, CreditBrainType::BRAIN_NEXT_WORD},
+    {986.0f, CreditWordType::WORD_OH, 523, CreditBrainType::BRAIN_NEXT_WORD},
+    {990.0f, CreditWordType::WORD_AW, 593, CreditBrainType::BRAIN_NEXT_WORD},
+    {994.0f, CreditWordType::WORD_AW, 616, CreditBrainType::BRAIN_NEXT_WORD},
+    {998.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {1001.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF},
+    {1002.0f, CreditWordType::WORD_EE, 150, CreditBrainType::BRAIN_FAST_ON},
+    {1004.0f, CreditWordType::WORD_OH, 220, CreditBrainType::BRAIN_NEXT_WORD},
+    {1006.0f, CreditWordType::WORD_AW, 307, CreditBrainType::BRAIN_NEXT_WORD},
+    {1008.0f, CreditWordType::WORD_AW, 390, CreditBrainType::BRAIN_NEXT_WORD},
+    {1012.0f, CreditWordType::WORD_EE, 452, CreditBrainType::BRAIN_NEXT_WORD},
+    {1016.0f, CreditWordType::WORD_AW, 512, CreditBrainType::BRAIN_NEXT_WORD},
+    {1018.0f, CreditWordType::WORD_AW, 573, CreditBrainType::BRAIN_NEXT_WORD},
+    {1022.0f, CreditWordType::WORD_AW, 630, CreditBrainType::BRAIN_NEXT_WORD},
+    {1024.0f, CreditWordType::WORD_AW, 656, CreditBrainType::BRAIN_NEXT_WORD},
+    {1028.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_FLY_OFF},
+    {1029.0f, CreditWordType::WORD_AA, 0, CreditBrainType::BRAIN_OFF},
+    {1033.0f, CreditWordType::WORD_OFF, 0, CreditBrainType::BRAIN_OFF}};
+static int           gCreditsTimingCount = LENGTH(gCreditsTiming);  // 0x6A2B98
 
 CreditsOverlay::CreditsOverlay(CreditScreen* theCreditScreen)
 {
-	mParent = theCreditScreen;
-	mMouseVisible = false;
-	mHasAlpha = true;
+    mParent       = theCreditScreen;
+    mMouseVisible = false;
+    mHasAlpha     = true;
 }
 
 void CreditsOverlay::Draw(Graphics* g)
 {
-	mParent->DrawOverlay(g);
+    mParent->DrawOverlay(g);
 }
 
-//0x433A70
-// GOTY @Patoke: 0x4367F0
+// 0x433A70
+//  GOTY @Patoke: 0x4367F0
 CreditScreen::CreditScreen(LawnApp* theApp)
 {
-	mApp = theApp;
-	mClip = false;
-	mCreditsReanimID = ReanimationID::REANIMATIONID_NULL;
-	mFogParticleID = ParticleSystemID::PARTICLESYSTEMID_NULL;
-	mUpdateCount = 0;
-	mDrawCount = 0;
-    mLastDrawCount = 0;
-	mBlinkCountdown = 700;
-	mDontSync = false;
-	mCreditsPaused = false;
-	mPreloaded = false;
+    mApp             = theApp;
+    mClip            = false;
+    mCreditsReanimID = ReanimationID::REANIMATIONID_NULL;
+    mFogParticleID   = ParticleSystemID::PARTICLESYSTEMID_NULL;
+    mUpdateCount     = 0;
+    mDrawCount       = 0;
+    mLastDrawCount   = 0;
+    mBlinkCountdown  = 700;
+    mDontSync        = false;
+    mCreditsPaused   = false;
+    mPreloaded       = false;
 
-	mApp->mEffectSystem->EffectSystemFreeAll();
-	mApp->mMusic->StopAllMusic();
-	TodLoadResources("DelayLoad_Credits");
+    mApp->mEffectSystem->EffectSystemFreeAll();
+    mApp->mMusic->StopAllMusic();
+    TodLoadResources("DelayLoad_Credits");
 
-    mBrainPosX = 0.0f;
-    mBrainPosY = 0.0f;
-    mCreditsPhase = CreditsPhase::CREDITS_MAIN1;
+    mBrainPosX           = 0.0f;
+    mBrainPosY           = 0.0f;
+    mCreditsPhase        = CreditsPhase::CREDITS_MAIN1;
     mCreditsPhaseCounter = 0;
-    mDrawBrain = false;
+    mDrawBrain           = false;
 
-	mMainMenuButton = MakeButton(CreditScreen::Credits_Button_MainMenu, this, _S("[CREDITS_MAIN_MENU_BUTTON]"));
-	mMainMenuButton->Resize(298, 554, 209, 46);
-	mMainMenuButton->SetVisible(false);
+    mMainMenuButton = MakeButton(CreditScreen::Credits_Button_MainMenu, this, _S("[CREDITS_MAIN_MENU_BUTTON]"));
+    mMainMenuButton->Resize(298, 554, 209, 46);
+    mMainMenuButton->SetVisible(false);
 
-	mReplayButton = MakeNewButton(CreditScreen::Credits_Button_Replay, this, _S("[CREDITS_REPLAY_BUTTON]"), FONT_HOUSEOFTERROR16, IMAGE_CREDITS_PLAYBUTTON, nullptr, nullptr);
-	mReplayButton->mTextDownOffsetX = 1;
-	mReplayButton->mTextDownOffsetY = 1;
-	mReplayButton->mColors[ButtonWidget::COLOR_LABEL] = Color(255, 255, 255);
-	mReplayButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(213, 159, 43);
-	mReplayButton->Resize(10, 530, 125, 65);
+    mReplayButton = MakeNewButton(CreditScreen::Credits_Button_Replay, this, _S("[CREDITS_REPLAY_BUTTON]"),
+                                  FONT_HOUSEOFTERROR16, IMAGE_CREDITS_PLAYBUTTON, nullptr, nullptr);
+    mReplayButton->mTextDownOffsetX                          = 1;
+    mReplayButton->mTextDownOffsetY                          = 1;
+    mReplayButton->mColors[ButtonWidget::COLOR_LABEL]        = Color(255, 255, 255);
+    mReplayButton->mColors[ButtonWidget::COLOR_LABEL_HILITE] = Color(213, 159, 43);
+    mReplayButton->Resize(10, 530, 125, 65);
     mReplayButton->SetVisible(false);
-	mReplayButton->mTextOffsetX = 33;
-	mReplayButton->mTextOffsetY = -5;
+    mReplayButton->mTextOffsetX = 33;
+    mReplayButton->mTextOffsetY = -5;
 
-	mOverlayWidget = new CreditsOverlay(this);
-	mOverlayWidget->Resize(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
-	
-	mOriginalMusicVolume = mApp->mMusicVolume;
-	if (mApp->mMusicVolume < 0.1)
-	{
-		mApp->SetMusicVolume(0.85);
-	}
+    mOverlayWidget = new CreditsOverlay(this);
+    mOverlayWidget->Resize(0, 0, BOARD_WIDTH, BOARD_HEIGHT);
+
+    mOriginalMusicVolume = mApp->mMusicVolume;
+    if (mApp->mMusicVolume < 0.1)
+    {
+        mApp->SetMusicVolume(0.85);
+    }
 }
 
-//0x433E20、0x433E40
+// 0x433E20、0x433E40
 CreditScreen::~CreditScreen()
 {
-	mApp->SetMusicVolume(mOriginalMusicVolume);
-	delete mReplayButton;
-	delete mMainMenuButton;
-	delete mOverlayWidget;
+    mApp->SetMusicVolume(mOriginalMusicVolume);
+    delete mReplayButton;
+    delete mMainMenuButton;
+    delete mOverlayWidget;
 }
 
-//0x433EE0
+// 0x433EE0
 void CreditScreen::AddedToManager(WidgetManager* theWidgetManager)
 {
-	Widget::AddedToManager(theWidgetManager);
-	AddWidget(mMainMenuButton);
-	AddWidget(mReplayButton);
-	AddWidget(mOverlayWidget);
+    Widget::AddedToManager(theWidgetManager);
+    AddWidget(mMainMenuButton);
+    AddWidget(mReplayButton);
+    AddWidget(mOverlayWidget);
 }
 
-//0x433F30
+// 0x433F30
 void CreditScreen::RemovedFromManager(WidgetManager* theWidgetManager)
 {
-	Widget::RemovedFromManager(theWidgetManager);
-	RemoveWidget(mMainMenuButton);
-	RemoveWidget(mReplayButton);
-	RemoveWidget(mOverlayWidget);
+    Widget::RemovedFromManager(theWidgetManager);
+    RemoveWidget(mMainMenuButton);
+    RemoveWidget(mReplayButton);
+    RemoveWidget(mOverlayWidget);
 }
 
-//0x433F80
+// 0x433F80
 void CreditScreen::PreLoadCredits()
 {
     mPreloaded = true;
-	TodLoadResources("DelayLoad_Background1");
-	TodLoadResources("DelayLoad_Background2");
-	TodLoadResources("DelayLoad_Background3");
-	TodLoadResources("DelayLoad_Background4");
-	TodLoadResources("DelayLoad_Background5");
-	TodLoadResources("DelayLoad_Background6");
+    TodLoadResources("DelayLoad_Background1");
+    TodLoadResources("DelayLoad_Background2");
+    TodLoadResources("DelayLoad_Background3");
+    TodLoadResources("DelayLoad_Background4");
+    TodLoadResources("DelayLoad_Background5");
+    TodLoadResources("DelayLoad_Background6");
 
     ReanimatorEnsureDefinitionLoaded(ReanimationType::REANIM_CREDITS_MAIN, true);
     ReanimationPreload(ReanimationType::REANIM_CREDITS_MAIN);
@@ -495,11 +495,12 @@ void CreditScreen::PreLoadCredits()
     }
 }
 
-//0x434C70
+// 0x434C70
 void CreditScreen::GetTiming(CreditsTiming** theBeforeTiming, CreditsTiming** theAfterTiming, float* theFraction)
 {
     Reanimation* aCreditsReanim = mApp->ReanimationGet(mCreditsReanimID);
-    float aFrameCount = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count * aCreditsReanim->mAnimTime - 1.0f;
+    float        aFrameCount =
+        aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count * aCreditsReanim->mAnimTime - 1.0f;
     if (mCreditsPhase == CreditsPhase::CREDITS_MAIN1)
     {
         aFrameCount += 2.0f;
@@ -515,16 +516,16 @@ void CreditScreen::GetTiming(CreditsTiming** theBeforeTiming, CreditsTiming** th
     else
     {
         *theBeforeTiming = nullptr;
-        *theAfterTiming = nullptr;
-        *theFraction = 0.0f;
+        *theAfterTiming  = nullptr;
+        *theFraction     = 0.0f;
         return;
     }
 
     if (aFrameCount < gCreditsTiming[0].mFrame)
     {
         *theBeforeTiming = nullptr;
-        *theAfterTiming = &gCreditsTiming[0];
-        *theFraction = aFrameCount / gCreditsTiming[0].mFrame;
+        *theAfterTiming  = &gCreditsTiming[0];
+        *theFraction     = aFrameCount / gCreditsTiming[0].mFrame;
     }
     else
     {
@@ -537,19 +538,19 @@ void CreditScreen::GetTiming(CreditsTiming** theBeforeTiming, CreditsTiming** th
             if (aTiming2->mFrame > aFrameCount)
             {
                 *theBeforeTiming = aTiming1;
-                *theAfterTiming = aTiming2;
-                *theFraction = (aFrameCount - aTiming1->mFrame) / (aTiming2->mFrame - aTiming1->mFrame);
+                *theAfterTiming  = aTiming2;
+                *theFraction     = (aFrameCount - aTiming1->mFrame) / (aTiming2->mFrame - aTiming1->mFrame);
                 return;
             }
         }
 
         *theBeforeTiming = &gCreditsTiming[gCreditsTimingCount - 1];
-        *theAfterTiming = nullptr;
-        *theFraction = 0.0f;
+        *theAfterTiming  = nullptr;
+        *theFraction     = 0.0f;
     }
 }
 
-//0x434D60
+// 0x434D60
 Reanimation* CreditScreen::PlayReanim(int aIndex)
 {
     Reanimation* aCreditsReanim = mApp->ReanimationTryToGet(mCreditsReanimID);
@@ -593,16 +594,15 @@ Reanimation* CreditScreen::PlayReanim(int aIndex)
     }
 
     aCreditsReanim->mIsAttachment = true;
-    aCreditsReanim->mLoopType = ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD;
-    mCreditsReanimID = mApp->ReanimationGetID(aCreditsReanim);
-	return aCreditsReanim;
+    aCreditsReanim->mLoopType     = ReanimLoopType::REANIM_PLAY_ONCE_AND_HOLD;
+    mCreditsReanimID              = mApp->ReanimationGetID(aCreditsReanim);
+    return aCreditsReanim;
 }
 
-//0x434F20
+// 0x434F20
 void DrawDisco(Graphics* g, float aCenterX, float aCenterY, float theTime)
 {
-    if (!gSexyAppBase->Is3DAccelerated())
-        return;
+    if (!gSexyAppBase->Is3DAccelerated()) return;
 
     float x1 = cos(theTime) * 600.0f;
     float y1 = sin(theTime) * 200.0f;
@@ -614,57 +614,48 @@ void DrawDisco(Graphics* g, float aCenterX, float aCenterY, float theTime)
     float y4 = sin(theTime + PI + PI / 2) * 200.0f;
 
     TriVertex aVerts[2][3];
-    int aColor = Color(255, 255, 255, 128).ToInt();
-    aVerts[0][0].x = x1 + aCenterX;
-    aVerts[0][0].y = y1 + aCenterY;
-    aVerts[0][0].u = 0.0;
-    aVerts[0][0].v = 0.0;
+    int       aColor   = Color(255, 255, 255, 128).ToInt();
+    aVerts[0][0].x     = x1 + aCenterX;
+    aVerts[0][0].y     = y1 + aCenterY;
+    aVerts[0][0].u     = 0.0;
+    aVerts[0][0].v     = 0.0;
     aVerts[0][0].color = aColor;
-    aVerts[0][1].x = x2 + aCenterX;
-    aVerts[0][1].y = y2 + aCenterY;
-    aVerts[0][1].u = 1.0;
-    aVerts[0][1].v = 0.0;
+    aVerts[0][1].x     = x2 + aCenterX;
+    aVerts[0][1].y     = y2 + aCenterY;
+    aVerts[0][1].u     = 1.0;
+    aVerts[0][1].v     = 0.0;
     aVerts[0][1].color = aColor;
-    aVerts[0][2].x = x4 + aCenterX;
-    aVerts[0][2].y = y4 + aCenterY;
-    aVerts[0][2].u = 0.0;
-    aVerts[0][2].v = 1.0;
+    aVerts[0][2].x     = x4 + aCenterX;
+    aVerts[0][2].y     = y4 + aCenterY;
+    aVerts[0][2].u     = 0.0;
+    aVerts[0][2].v     = 1.0;
     aVerts[0][2].color = aColor;
-    aVerts[1][0].x = x4 + aCenterX;
-    aVerts[1][0].y = y4 + aCenterY;
-    aVerts[1][0].u = 0.0;
-    aVerts[1][0].v = 1.0;
+    aVerts[1][0].x     = x4 + aCenterX;
+    aVerts[1][0].y     = y4 + aCenterY;
+    aVerts[1][0].u     = 0.0;
+    aVerts[1][0].v     = 1.0;
     aVerts[1][0].color = aColor;
-    aVerts[1][1].x = x2 + aCenterX;
-    aVerts[1][1].y = y2 + aCenterY;
-    aVerts[1][1].u = 1.0;
-    aVerts[1][1].v = 0.0;
+    aVerts[1][1].x     = x2 + aCenterX;
+    aVerts[1][1].y     = y2 + aCenterY;
+    aVerts[1][1].u     = 1.0;
+    aVerts[1][1].v     = 0.0;
     aVerts[1][1].color = aColor;
-    aVerts[1][2].x = x3 + aCenterX;
-    aVerts[1][2].y = y3 + aCenterY;
-    aVerts[1][2].u = 1.0;
-    aVerts[1][2].v = 1.0;
+    aVerts[1][2].x     = x3 + aCenterX;
+    aVerts[1][2].y     = y3 + aCenterY;
+    aVerts[1][2].u     = 1.0;
+    aVerts[1][2].v     = 1.0;
     aVerts[1][2].color = aColor;
 
-    g->mDestImage->BltTrianglesTex(
-        IMAGE_REANIM_CREDITS_DISCOLIGHTS, 
-        aVerts, 
-        2, 
-        Rect(0, 0, BOARD_WIDTH, BOARD_HEIGHT), 
-        Color::White, 
-        g->mDrawMode, 
-        0.0f, 
-        0.0f, 
-        g->mLinearBlend
-    );
+    g->mDestImage->BltTrianglesTex(IMAGE_REANIM_CREDITS_DISCOLIGHTS, aVerts, 2, Rect(0, 0, BOARD_WIDTH, BOARD_HEIGHT),
+                                   Color::White, g->mDrawMode, 0.0f, 0.0f, g->mLinearBlend);
 }
 
-//0x4351E0
+// 0x4351E0
 void CreditScreen::DrawFogEffect(Graphics* g, float theTime)
 {
     Reanimation* aCreditsReanim = mApp->ReanimationGet(mCreditsReanimID);
-    Image* aFogImage = mApp->Is3DAccelerated() ? IMAGE_FOG : IMAGE_FOG_SOFTWARE;
-    int aFadeAmount = theTime * 255.0f;
+    Image*       aFogImage      = mApp->Is3DAccelerated() ? IMAGE_FOG : IMAGE_FOG_SOFTWARE;
+    int          aFadeAmount    = theTime * 255.0f;
 
     for (int x = 0; x < 14; x++)
     {
@@ -672,13 +663,14 @@ void CreditScreen::DrawFogEffect(Graphics* g, float theTime)
         {
             // 取得格子内的雾的形状
             int aCelLook = x + (x + 17) * y;
-            int aCelCol = aCelLook % 8;
+            int aCelCol  = aCelLook % 8;
             // 本格浓雾横坐标 = 列 * 80 + 浓雾偏移 - 15
             float aPosX = x * 80 - 15.0f;
             // 本格浓雾纵坐标 = 行 * 85 + 200
             float aPosY = y * 85 + 200.0f;
             // 开始计算周期变化的颜色，aAnimTime 为 MV 动画播放至当前时刻需要的时间（秒数）
-            float aAnimTime = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count * aCreditsReanim->mAnimTime / (aCreditsReanim->mAnimRate * SECONDS_PER_UPDATE);
+            float aAnimTime = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count *
+                              aCreditsReanim->mAnimTime / (aCreditsReanim->mAnimRate * SECONDS_PER_UPDATE);
             float aTime = aAnimTime * PI * 2;
             // 与行、列有关的初始相位
             float aPhaseX = 6 * PI * x / 14;
@@ -686,14 +678,14 @@ void CreditScreen::DrawFogEffect(Graphics* g, float theTime)
             // 根据初相和时间计算当前相位
             float aMotion = 13 + 4 * sin(aTime / 900 + aPhaseY) + 8 * sin(aTime / 500 + aPhaseX);
 
-            int aColorVariant = 255 - (aCelLook % 20) * 1.5f - aMotion * 1.5f;
+            int aColorVariant     = 255 - (aCelLook % 20) * 1.5f - aMotion * 1.5f;
             int aLightnessVariant = 255 - (aCelLook % 20) - aMotion;
             if (!mApp->Is3DAccelerated())
             {
                 aPosX += 10;
                 aPosY += 23;
-                aCelCol = aCelLook % Sexy::IMAGE_FOG_SOFTWARE->mNumCols;
-                aColorVariant = 255;
+                aCelCol           = aCelLook % Sexy::IMAGE_FOG_SOFTWARE->mNumCols;
+                aColorVariant     = 255;
                 aLightnessVariant = 255;
             }
 
@@ -705,7 +697,7 @@ void CreditScreen::DrawFogEffect(Graphics* g, float theTime)
     }
 }
 
-//0x4354E0
+// 0x4354E0
 void CreditScreen::DrawOverlay(Graphics* g)
 {
     if (mCreditsPhase == CreditsPhase::CREDITS_END)
@@ -719,24 +711,30 @@ void CreditScreen::DrawOverlay(Graphics* g)
     }
 }
 
-//0x435550
+// 0x435550
 void CreditScreen::DrawFinalCredits(Graphics* g)
 {
-    TodDrawString(g, _S("[CREDITS_GAMENAME]"), BOARD_WIDTH / 2, 60, FONT_HOUSEOFTERROR28, Color::White, DrawStringJustification::DS_ALIGN_CENTER);
+    TodDrawString(g, _S("[CREDITS_GAMENAME]"), BOARD_WIDTH / 2, 60, FONT_HOUSEOFTERROR28, Color::White,
+                  DrawStringJustification::DS_ALIGN_CENTER);
 
     Rect aRectNames1(405, 90, 200, 200);
-    TodDrawStringWrapped(g, _S("[CREDITS_NAMES1]"), aRectNames1, FONT_HOUSEOFTERROR16, Color::White, DrawStringJustification::DS_ALIGN_LEFT);
+    TodDrawStringWrapped(g, _S("[CREDITS_NAMES1]"), aRectNames1, FONT_HOUSEOFTERROR16, Color::White,
+                         DrawStringJustification::DS_ALIGN_LEFT);
     Rect aRectRoles1(190, 90, 200, 200);
-    TodDrawStringWrapped(g, _S("[CREDITS_ROLES1]"), aRectRoles1, FONT_HOUSEOFTERROR16, Color::White, DrawStringJustification::DS_ALIGN_RIGHT);
+    TodDrawStringWrapped(g, _S("[CREDITS_ROLES1]"), aRectRoles1, FONT_HOUSEOFTERROR16, Color::White,
+                         DrawStringJustification::DS_ALIGN_RIGHT);
     Rect aRectNames2(340, 280, 450, 250);
-    TodDrawStringWrapped(g, _S("[CREDITS_NAMES2]"), aRectNames2, FONT_HOUSEOFTERROR16, Color::White, DrawStringJustification::DS_ALIGN_LEFT);
+    TodDrawStringWrapped(g, _S("[CREDITS_NAMES2]"), aRectNames2, FONT_HOUSEOFTERROR16, Color::White,
+                         DrawStringJustification::DS_ALIGN_LEFT);
     Rect aRectRoles2(30, 280, 300, 250);
-    TodDrawStringWrapped(g, _S("[CREDITS_ROLES2]"), aRectRoles2, FONT_HOUSEOFTERROR16, Color::White, DrawStringJustification::DS_ALIGN_RIGHT);
+    TodDrawStringWrapped(g, _S("[CREDITS_ROLES2]"), aRectRoles2, FONT_HOUSEOFTERROR16, Color::White,
+                         DrawStringJustification::DS_ALIGN_RIGHT);
 
-    TodDrawString(g, _S("[CREDITS_THANKS]"), BOARD_WIDTH / 2, 530, FONT_HOUSEOFTERROR16, Color::White, DrawStringJustification::DS_ALIGN_CENTER);
+    TodDrawString(g, _S("[CREDITS_THANKS]"), BOARD_WIDTH / 2, 530, FONT_HOUSEOFTERROR16, Color::White,
+                  DrawStringJustification::DS_ALIGN_CENTER);
 }
 
-//0x435A90
+// 0x435A90
 void DrawReanimToPreload(Graphics* g, ReanimationType theReanimType)
 {
     Reanimation aReanim;
@@ -745,7 +743,7 @@ void DrawReanimToPreload(Graphics* g, ReanimationType theReanimType)
     aReanim.Draw(g);
 }
 
-//0x435B60
+// 0x435B60
 void CreditScreen::Draw(Graphics* g)
 {
     g->SetLinearBlend(true);
@@ -775,13 +773,13 @@ void CreditScreen::Draw(Graphics* g)
     g->SetColor(Color::Black);
     g->FillRect(0, 0, mWidth, mHeight);
 
-    Reanimation* aCreditsReanim = mApp->ReanimationGet(mCreditsReanimID);
-    int aFrameCount = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count - 1;
-    float aFrameFactor = 1.0f / aFrameCount;
-    int aBackground1Index = aCreditsReanim->FindTrackIndex("Background");
+    Reanimation*        aCreditsReanim    = mApp->ReanimationGet(mCreditsReanimID);
+    int                 aFrameCount       = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count - 1;
+    float               aFrameFactor      = 1.0f / aFrameCount;
+    int                 aBackground1Index = aCreditsReanim->FindTrackIndex("Background");
     ReanimatorTransform aTransformBackground1;
     aCreditsReanim->GetCurrentTransform(aBackground1Index, &aTransformBackground1);
-    int aBackground2Index = aCreditsReanim->FindTrackIndex("Background2");
+    int                 aBackground2Index = aCreditsReanim->FindTrackIndex("Background2");
     ReanimatorTransform aTransformBackground2;
     aCreditsReanim->GetCurrentTransform(aBackground2Index, &aTransformBackground2);
     Graphics aBackground2G(*g);
@@ -803,74 +801,85 @@ void CreditScreen::Draw(Graphics* g)
     }
     if (aDrawClippedBackgrounds1)
     {
-        int aBackground3Index = aCreditsReanim->FindTrackIndex("Background3");
+        int                 aBackground3Index = aCreditsReanim->FindTrackIndex("Background3");
         ReanimatorTransform aTransformBackground3;
         aCreditsReanim->GetCurrentTransform(aBackground3Index, &aTransformBackground3);
-        int aBackground4Index = aCreditsReanim->FindTrackIndex("Background4");
+        int                 aBackground4Index = aCreditsReanim->FindTrackIndex("Background4");
         ReanimatorTransform aTransformBackground4;
         aCreditsReanim->GetCurrentTransform(aBackground4Index, &aTransformBackground4);
-        
+
         if (aTransformBackground2.mFrame != -1.0f)
         {
-            aBackground2G.ClipRect(aTransformBackground2.mTransX, aTransformBackground2.mTransY, aTransformBackground2.mImage->mWidth - 1, aTransformBackground2.mImage->mHeight - 1);
-            aBackground2G.DrawImageF(IMAGE_BACKGROUND1, aTransformBackground2.mTransX - BOARD_WIDTH / 2, aTransformBackground2.mTransY - BOARD_HEIGHT / 2);
+            aBackground2G.ClipRect(aTransformBackground2.mTransX, aTransformBackground2.mTransY,
+                                   aTransformBackground2.mImage->mWidth - 1, aTransformBackground2.mImage->mHeight - 1);
+            aBackground2G.DrawImageF(IMAGE_BACKGROUND1, aTransformBackground2.mTransX - BOARD_WIDTH / 2,
+                                     aTransformBackground2.mTransY - BOARD_HEIGHT / 2);
             aBackground2G.ClearClipRect();
         }
         if (aTransformBackground3.mFrame != -1.0f)
         {
             Graphics aBackground3G(*g);
-            aBackground3G.ClipRect(aTransformBackground3.mTransX, aTransformBackground3.mTransY, aTransformBackground3.mImage->mWidth - 1, aTransformBackground3.mImage->mHeight - 1);
-            aBackground3G.DrawImageF(IMAGE_BACKGROUND1, aTransformBackground3.mTransX - BOARD_WIDTH / 2, aTransformBackground3.mTransY - BOARD_HEIGHT / 2);
+            aBackground3G.ClipRect(aTransformBackground3.mTransX, aTransformBackground3.mTransY,
+                                   aTransformBackground3.mImage->mWidth - 1, aTransformBackground3.mImage->mHeight - 1);
+            aBackground3G.DrawImageF(IMAGE_BACKGROUND1, aTransformBackground3.mTransX - BOARD_WIDTH / 2,
+                                     aTransformBackground3.mTransY - BOARD_HEIGHT / 2);
         }
         if (aTransformBackground4.mFrame != -1.0f)
         {
             Graphics aBackground4G(*g);
-            aBackground4G.ClipRect(aTransformBackground4.mTransX, aTransformBackground4.mTransY, aTransformBackground4.mImage->mWidth - 1, aTransformBackground4.mImage->mHeight - 1);
-            aBackground4G.DrawImageF(IMAGE_BACKGROUND2, aTransformBackground4.mTransX - BOARD_WIDTH / 2, aTransformBackground4.mTransY - BOARD_HEIGHT / 2);
+            aBackground4G.ClipRect(aTransformBackground4.mTransX, aTransformBackground4.mTransY,
+                                   aTransformBackground4.mImage->mWidth - 1, aTransformBackground4.mImage->mHeight - 1);
+            aBackground4G.DrawImageF(IMAGE_BACKGROUND2, aTransformBackground4.mTransX - BOARD_WIDTH / 2,
+                                     aTransformBackground4.mTransY - BOARD_HEIGHT / 2);
         }
     }
     if (aDrawClippedBackgrounds2)
     {
-        int aBackground1Index = aCreditsReanim->FindTrackIndex("Background");
+        int                 aBackground1Index = aCreditsReanim->FindTrackIndex("Background");
         ReanimatorTransform aTransformBackground1;
         aCreditsReanim->GetCurrentTransform(aBackground1Index, &aTransformBackground1);
-        int aBackground3Index = aCreditsReanim->FindTrackIndex("Background3");
+        int                 aBackground3Index = aCreditsReanim->FindTrackIndex("Background3");
         ReanimatorTransform aTransformBackground3;
         aCreditsReanim->GetCurrentTransform(aBackground3Index, &aTransformBackground3);
-        int aBackground4Index = aCreditsReanim->FindTrackIndex("Background4");
+        int                 aBackground4Index = aCreditsReanim->FindTrackIndex("Background4");
         ReanimatorTransform aTransformBackground4;
         aCreditsReanim->GetCurrentTransform(aBackground4Index, &aTransformBackground4);
 
         if (aTransformBackground1.mFrame != -1.0f)
         {
             Graphics aBackground1G(*g);
-            aBackground1G.ClipRect(aTransformBackground1.mTransX, aTransformBackground1.mTransY, aTransformBackground1.mImage->mWidth - 1, aTransformBackground1.mImage->mHeight - 1);
-            aBackground1G.DrawImageF(IMAGE_BACKGROUND1, aTransformBackground1.mTransX - BOARD_WIDTH / 2, aTransformBackground1.mTransY - BOARD_HEIGHT / 2);
+            aBackground1G.ClipRect(aTransformBackground1.mTransX, aTransformBackground1.mTransY,
+                                   aTransformBackground1.mImage->mWidth - 1, aTransformBackground1.mImage->mHeight - 1);
+            aBackground1G.DrawImageF(IMAGE_BACKGROUND1, aTransformBackground1.mTransX - BOARD_WIDTH / 2,
+                                     aTransformBackground1.mTransY - BOARD_HEIGHT / 2);
         }
         if (aTransformBackground3.mFrame != -1.0f)
         {
             Graphics aBackground3G(*g);
             aBackground3G.mTransX += aTransformBackground3.mTransX - 20.0f;
             aBackground3G.mTransY += aTransformBackground3.mTransY - 260.0f;
-            aBackground3G.ClipRect(20, 260, aTransformBackground3.mImage->mWidth - 1, aTransformBackground3.mImage->mHeight - 1);
+            aBackground3G.ClipRect(20, 260, aTransformBackground3.mImage->mWidth - 1,
+                                   aTransformBackground3.mImage->mHeight - 1);
             aBackground3G.DrawImageF(IMAGE_BACKGROUND3, -220.0f, 0.0f);
             aBackground3G.DrawImageF(IMAGE_POOL, 34.0f, 278.0f);
         }
         if (aTransformBackground4.mFrame != -1.0f)
         {
             Graphics aBackground4G(*g);
-            aBackground4G.ClipRect(aTransformBackground4.mTransX, aTransformBackground4.mTransY, aTransformBackground4.mImage->mWidth - 1, aTransformBackground4.mImage->mHeight - 1);
-            aBackground4G.DrawImageF(IMAGE_BACKGROUND2, aTransformBackground4.mTransX - BOARD_WIDTH / 2, aTransformBackground4.mTransY - BOARD_HEIGHT / 2);
+            aBackground4G.ClipRect(aTransformBackground4.mTransX, aTransformBackground4.mTransY,
+                                   aTransformBackground4.mImage->mWidth - 1, aTransformBackground4.mImage->mHeight - 1);
+            aBackground4G.DrawImageF(IMAGE_BACKGROUND2, aTransformBackground4.mTransX - BOARD_WIDTH / 2,
+                                     aTransformBackground4.mTransY - BOARD_HEIGHT / 2);
         }
     }
     aCreditsReanim->DrawRenderGroup(g, 1);
 
-    bool aDrawPool = false;
-    bool aDrawNightPool = false;
-    bool aDrawDoorBottom = false;
-    bool aDrawChimney = false;
+    bool aDrawPool        = false;
+    bool aDrawNightPool   = false;
+    bool aDrawDoorBottom  = false;
+    bool aDrawChimney     = false;
     bool aDrawDiscoLights = false;
-    bool aDrawFog = false;
+    bool aDrawFog         = false;
     if (mCreditsPhase == CreditsPhase::CREDITS_MAIN1)
     {
         if (aCreditsReanim->mAnimTime > aFrameFactor * 203.0f && aCreditsReanim->mAnimTime < aFrameFactor * 268.0f)
@@ -879,7 +888,7 @@ void CreditScreen::Draw(Graphics* g)
         }
         if (aCreditsReanim->mAnimTime > aFrameFactor * 305.0f && aCreditsReanim->mAnimTime < aFrameFactor * 339.0f)
         {
-            aDrawPool = true;
+            aDrawPool       = true;
             aDrawDoorBottom = true;
         }
     }
@@ -887,7 +896,7 @@ void CreditScreen::Draw(Graphics* g)
     {
         if (aCreditsReanim->mAnimTime > aFrameFactor * 187.0f && aCreditsReanim->mAnimTime < aFrameFactor * 249.0f)
         {
-            aDrawPool = true;
+            aDrawPool      = true;
             aDrawNightPool = true;
             if (aTransformBackground1.mFrame != -1.0f || aTransformBackground2.mFrame != -1.0f)
             {
@@ -906,7 +915,7 @@ void CreditScreen::Draw(Graphics* g)
             if (aTransformBackground2.mFrame != -1.0f)
             {
                 aDrawDiscoLights = true;
-                aDrawFog = true;
+                aDrawFog         = true;
             }
         }
     }
@@ -926,10 +935,10 @@ void CreditScreen::Draw(Graphics* g)
     }
     if (aTransformBackground2.mFrame == -1.0f)
     {
-        //aDrawPool = false;
-        //aDrawNightPool = false;
+        // aDrawPool = false;
+        // aDrawNightPool = false;
         aDrawDoorBottom = false;
-        aDrawChimney = false;
+        aDrawChimney    = false;
     }
     else
     {
@@ -939,7 +948,7 @@ void CreditScreen::Draw(Graphics* g)
             mApp->mPoolEffect->PoolEffectDraw(&aBackground2G, aDrawNightPool);
         }
     }
-    
+
     if (aDrawDoorBottom)
     {
         aBackground2G.DrawImage(IMAGE_BACKGROUND3_GAMEOVER_INTERIOR_OVERLAY, -171, 241);
@@ -952,7 +961,8 @@ void CreditScreen::Draw(Graphics* g)
     }
     if (aDrawDiscoLights)
     {
-        float aDiscoTime = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count * aCreditsReanim->mAnimTime / aCreditsReanim->mAnimRate;
+        float aDiscoTime = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count * aCreditsReanim->mAnimTime /
+                           aCreditsReanim->mAnimRate;
         DrawDisco(g, 600.0f, 450.0f, aDiscoTime);
         DrawDisco(g, 200.0f, 450.0f, aDiscoTime);
     }
@@ -984,7 +994,8 @@ void CreditScreen::Draw(Graphics* g)
 
     if (aDrawFog)
     {
-        float aPercent = TodAnimateCurveFloatTime(aFrameFactor * 189.0f, aFrameFactor * 249.0f, aCreditsReanim->mAnimTime, 0.0f, 1.0f, TodCurves::CURVE_LINEAR);
+        float aPercent = TodAnimateCurveFloatTime(aFrameFactor * 189.0f, aFrameFactor * 249.0f,
+                                                  aCreditsReanim->mAnimTime, 0.0f, 1.0f, TodCurves::CURVE_LINEAR);
         DrawFogEffect(&aBackground2G, aPercent);
     }
     aCreditsReanim->DrawRenderGroup(g, 3);
@@ -997,8 +1008,7 @@ void CreditScreen::Draw(Graphics* g)
 
 Reanimation* CreditScreen::FindSubReanim(Reanimation* theReanim, ReanimationType theReanimType)
 {
-    if (theReanim->mReanimationType == theReanimType)
-        return theReanim;
+    if (theReanim->mReanimationType == theReanimType) return theReanim;
 
     for (int i = 0; i < theReanim->mDefinition->mTracks.count; i++)
     {
@@ -1016,7 +1026,7 @@ Reanimation* CreditScreen::FindSubReanim(Reanimation* theReanim, ReanimationType
     return nullptr;
 }
 
-//0x436940
+// 0x436940
 void CreditScreen::UpdateBlink()
 {
     mBlinkCountdown--;
@@ -1025,14 +1035,14 @@ void CreditScreen::UpdateBlink()
         return;
     }
 
-    mBlinkCountdown = 700;
-    Reanimation* aCreditsReanim = mApp->ReanimationGet(mCreditsReanimID);
+    mBlinkCountdown               = 700;
+    Reanimation* aCreditsReanim   = mApp->ReanimationGet(mCreditsReanimID);
     Reanimation* aSunFlowerReanim = FindSubReanim(aCreditsReanim, ReanimationType::REANIM_SUNFLOWER);
     if (aSunFlowerReanim)
     {
         if (mCreditsPhase == CreditsPhase::CREDITS_MAIN3)
         {
-            int aFrameCount = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count - 1;
+            int   aFrameCount  = aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count - 1;
             float aFrameFactor = 1.0f / aFrameCount;
             if (aCreditsReanim->mAnimTime > aFrameFactor * 200.0f)
             {
@@ -1048,7 +1058,7 @@ void CreditScreen::UpdateBlink()
     }
 }
 
-//0x436A30
+// 0x436A30
 void CreditScreen::Update()
 {
     Widget::Update();
@@ -1076,9 +1086,11 @@ void CreditScreen::Update()
     }
     else if (mUpdateCount > 1)
     {
-        Reanimation* aCreditsReanim = mApp->ReanimationGet(mCreditsReanimID);
-        int aDurationSinceStart = mTimerSinceStart.GetDuration();
-        int aDurationReanimation = (aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count * aCreditsReanim->mAnimTime / aCreditsReanim->mAnimRate) * 1000.0f;
+        Reanimation* aCreditsReanim       = mApp->ReanimationGet(mCreditsReanimID);
+        int          aDurationSinceStart  = mTimerSinceStart.GetDuration();
+        int          aDurationReanimation = (aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count *
+                                    aCreditsReanim->mAnimTime / aCreditsReanim->mAnimRate) *
+                                   1000.0f;
         if (mCreditsPhase == CreditsPhase::CREDITS_MAIN2)
         {
             aDurationReanimation += 57142;
@@ -1089,7 +1101,7 @@ void CreditScreen::Update()
         }
 
         int aUnsyncedDuration = aDurationSinceStart - aDurationReanimation;
-        int aUnsyncedFrames = (aUnsyncedDuration + 5) / 10;
+        int aUnsyncedFrames   = (aUnsyncedDuration + 5) / 10;
         if (aUnsyncedFrames < 0)
         {
             TodTrace("Movie playing too fast %d frames", 1 - aUnsyncedFrames);
@@ -1115,13 +1127,13 @@ void CreditScreen::Update()
     MarkDirty();
 }
 
-//0x436BE0
+// 0x436BE0
 void CreditScreen::UpdateMovie()
 {
     UpdateBlink();
 
     Reanimation* aCreditsReanim = mApp->ReanimationGet(mCreditsReanimID);
-    float aFrameFactor = 1.0f / (aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count - 1);
+    float        aFrameFactor   = 1.0f / (aCreditsReanim->mDefinition->mTracks.tracks->mTransforms.count - 1);
 
     aCreditsReanim->Update();
     mApp->mEffectSystem->Update();
@@ -1131,12 +1143,12 @@ void CreditScreen::UpdateMovie()
     if (mCreditsPhase == CreditsPhase::CREDITS_MAIN1 && aCreditsReanim->mLoopCount > 0)
     {
         aCreditsReanim = PlayReanim(2);
-        mCreditsPhase = CreditsPhase::CREDITS_MAIN2;
+        mCreditsPhase  = CreditsPhase::CREDITS_MAIN2;
     }
     else if (mCreditsPhase == CreditsPhase::CREDITS_MAIN2 && aCreditsReanim->mLoopCount > 0)
     {
         aCreditsReanim = PlayReanim(3);
-        mCreditsPhase = CreditsPhase::CREDITS_MAIN3;
+        mCreditsPhase  = CreditsPhase::CREDITS_MAIN3;
     }
     else if (mCreditsPhase == CreditsPhase::CREDITS_MAIN3 && aCreditsReanim->mLoopCount > 0)
     {
@@ -1163,11 +1175,13 @@ void CreditScreen::UpdateMovie()
             aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 140.0f) ||
             aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 142.0f))
         {
-            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDIT_STROBE);
+            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_CREDIT_STROBE);
         }
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 136.5f))
         {
-            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDITS_RAYSWIPE);
+            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_CREDITS_RAYSWIPE);
         }
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 330.0f))
         {
@@ -1199,9 +1213,9 @@ void CreditScreen::UpdateMovie()
             ReanimatorTrackInstance* aTrackWordsUndead1 = aUndeadReanim->GetTrackInstanceByName("bubbletext1");
             ReanimatorTrackInstance* aTrackWordsUndead2 = aUndeadReanim->GetTrackInstanceByName("bubbletext2");
             ReanimatorTrackInstance* aTrackWordsUndead3 = aUndeadReanim->GetTrackInstanceByName("bubbletext3");
-            aTrackWordsUndead1->mTrackColor = Color::Black;
-            aTrackWordsUndead2->mTrackColor = Color::Black;
-            aTrackWordsUndead3->mTrackColor = Color::Black;
+            aTrackWordsUndead1->mTrackColor             = Color::Black;
+            aTrackWordsUndead2->mTrackColor             = Color::Black;
+            aTrackWordsUndead3->mTrackColor             = Color::Black;
 
             ReanimatorTrackInstance* aTrackWordsShake = aUndeadReanim->GetTrackInstanceByName("ShakyText");
             if (aCreditsReanim->mAnimTime > aFrameFactor * 112.0f)
@@ -1216,7 +1230,8 @@ void CreditScreen::UpdateMovie()
 
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 120.0f))
         {
-            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDITS_ZOMBIEHEADWIPE);
+            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_CREDITS_ZOMBIEHEADWIPE);
         }
     }
     if (mCreditsPhase == CreditsPhase::CREDITS_MAIN2)
@@ -1258,11 +1273,13 @@ void CreditScreen::UpdateMovie()
             aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 239.5f) ||
             aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 243.5f))
         {
-            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDIT_STROBE);
+            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_CREDIT_STROBE);
         }
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 332.75f))
         {
-            mApp->AddTodParticle(678.0f, 352.0f, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_MELONSPLASH);
+            mApp->AddTodParticle(678.0f, 352.0f, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_MELONSPLASH);
         }
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 336.0f))
         {
@@ -1277,18 +1294,20 @@ void CreditScreen::UpdateMovie()
         }
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 342.0f))
         {
-            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDIT_STROBE);
+            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_CREDIT_STROBE);
         }
 
-        int aBackground2Index = aCreditsReanim->FindTrackIndex("Background2");
+        int                 aBackground2Index = aCreditsReanim->FindTrackIndex("Background2");
         ReanimatorTransform aTransformBackground2;
         aCreditsReanim->GetCurrentTransform(aBackground2Index, &aTransformBackground2);
 
         float aFogPosX = aTransformBackground2.mTransX + 856.0f;
         if (aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 188.0f))
         {
-            TodParticleSystem* aFogParticle = mApp->AddTodParticle(aFogPosX, 230.0f, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDITS_FOG);
-            mFogParticleID = mApp->ParticleGetID(aFogParticle);
+            TodParticleSystem* aFogParticle = mApp->AddTodParticle(aFogPosX, 230.0f, (int)RenderLayer::RENDER_LAYER_TOP,
+                                                                   ParticleEffect::PARTICLE_CREDITS_FOG);
+            mFogParticleID                  = mApp->ParticleGetID(aFogParticle);
         }
         TodParticleSystem* aFogParticle = mApp->ParticleTryToGet(mFogParticleID);
         if (aFogParticle)
@@ -1324,47 +1343,58 @@ void CreditScreen::UpdateMovie()
             aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 243.0f) ||
             aCreditsReanim->ShouldTriggerTimedEvent(aFrameFactor * 247.0f))
         {
-            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP, ParticleEffect::PARTICLE_CREDIT_STROBE);
+            mApp->AddTodParticle(BOARD_WIDTH / 2, BOARD_HEIGHT / 2, (int)RenderLayer::RENDER_LAYER_TOP,
+                                 ParticleEffect::PARTICLE_CREDIT_STROBE);
         }
     }
 
-    float aFraction;
+    float          aFraction;
     CreditsTiming* aBeforeTiming;
     CreditsTiming* aAfterTiming;
     GetTiming(&aBeforeTiming, &aAfterTiming, &aFraction);
 
     int aSunflowerFrame = 0;
-    mDrawBrain = false;
+    mDrawBrain          = false;
     if (aBeforeTiming && aAfterTiming)
     {
         if (aAfterTiming->mBrainType == CreditBrainType::BRAIN_FLY_ON)
         {
-            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, -50.0f, aAfterTiming->mWordX - 15.0f, TodCurves::CURVE_EASE_IN_OUT);
-            mBrainPosY = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_BOUNCE_FAST_MIDDLE);
+            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, -50.0f, aAfterTiming->mWordX - 15.0f,
+                                                  TodCurves::CURVE_EASE_IN_OUT);
+            mBrainPosY =
+                TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_BOUNCE_FAST_MIDDLE);
             mDrawBrain = true;
         }
         else if (aAfterTiming->mBrainType == CreditBrainType::BRAIN_FAST_ON)
         {
-            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aAfterTiming->mWordX - 50.0f, aAfterTiming->mWordX - 15.0f, TodCurves::CURVE_EASE_IN_OUT);
+            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aAfterTiming->mWordX - 50.0f,
+                                                  aAfterTiming->mWordX - 15.0f, TodCurves::CURVE_EASE_IN_OUT);
             mBrainPosY = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 485.0f, 505.0f, TodCurves::CURVE_EASE_IN_OUT);
             mDrawBrain = true;
         }
         else if (aAfterTiming->mBrainType == CreditBrainType::BRAIN_FLY_OFF)
         {
-            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aBeforeTiming->mWordX - 15.0f, 850.0f, TodCurves::CURVE_EASE_IN_OUT);
-            mBrainPosY = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_BOUNCE_FAST_MIDDLE);
+            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aBeforeTiming->mWordX - 15.0f, 850.0f,
+                                                  TodCurves::CURVE_EASE_IN_OUT);
+            mBrainPosY =
+                TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_BOUNCE_FAST_MIDDLE);
             mDrawBrain = true;
         }
         else if (aAfterTiming->mBrainType == CreditBrainType::BRAIN_FAST_OFF)
         {
-            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aBeforeTiming->mWordX - 15.0f, aBeforeTiming->mWordX + 25.0f, TodCurves::CURVE_EASE_IN_OUT);
+            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aBeforeTiming->mWordX - 15.0f,
+                                                  aBeforeTiming->mWordX + 25.0f, TodCurves::CURVE_EASE_IN_OUT);
             mBrainPosY = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_EASE_IN_OUT);
             mDrawBrain = true;
         }
-        else if (aBeforeTiming->mBrainType == CreditBrainType::BRAIN_FLY_ON || aBeforeTiming->mBrainType == CreditBrainType::BRAIN_FAST_ON || aBeforeTiming->mBrainType == CreditBrainType::BRAIN_NEXT_WORD)
+        else if (aBeforeTiming->mBrainType == CreditBrainType::BRAIN_FLY_ON ||
+                 aBeforeTiming->mBrainType == CreditBrainType::BRAIN_FAST_ON ||
+                 aBeforeTiming->mBrainType == CreditBrainType::BRAIN_NEXT_WORD)
         {
-            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aBeforeTiming->mWordX - 15.0f, aAfterTiming->mWordX - 15.0f, TodCurves::CURVE_EASE_IN_OUT);
-            mBrainPosY = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_BOUNCE_FAST_MIDDLE);
+            mBrainPosX = TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, aBeforeTiming->mWordX - 15.0f,
+                                                  aAfterTiming->mWordX - 15.0f, TodCurves::CURVE_EASE_IN_OUT);
+            mBrainPosY =
+                TodAnimateCurveFloatTime(0.0f, 1.0f, aFraction, 505.0f, 485.0f, TodCurves::CURVE_BOUNCE_FAST_MIDDLE);
             mDrawBrain = true;
         }
 
@@ -1403,32 +1433,45 @@ void CreditScreen::UpdateMovie()
         {
             aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_WINK);
             Reanimation* aStageReanim = FindSubReanim(aCreditsReanim, ReanimationType::REANIM_CREDITS_STAGE);
-            aSunFlowerReanim->mAnimTime -= aSunFlowerReanim->mAnimRate * SECONDS_PER_UPDATE / aSunFlowerReanim->mFrameCount;
+            aSunFlowerReanim->mAnimTime -=
+                aSunFlowerReanim->mAnimRate * SECONDS_PER_UPDATE / aSunFlowerReanim->mFrameCount;
             aStageReanim->mAnimTime -= aStageReanim->mAnimRate * SECONDS_PER_UPDATE / aStageReanim->mFrameCount;
         }
         else
         {
             switch (aSunflowerFrame)
             {
-            case 1:     aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING1);     break;
-            case 2:     aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING2);     break;
-            case 3:     aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING3);     break;
-            case 4:     aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING4);     break;
-            case 5:     aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING5);     break;
-            default:    aSunFlowerReanim->SetImageOverride("anim_idle", nullptr);                               break;
+                case 1:
+                    aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING1);
+                    break;
+                case 2:
+                    aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING2);
+                    break;
+                case 3:
+                    aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING3);
+                    break;
+                case 4:
+                    aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING4);
+                    break;
+                case 5:
+                    aSunFlowerReanim->SetImageOverride("anim_idle", IMAGE_REANIM_SUNFLOWER_HEAD_SING5);
+                    break;
+                default:
+                    aSunFlowerReanim->SetImageOverride("anim_idle", nullptr);
+                    break;
             }
         }
     }
 }
 
-//0x437F20
+// 0x437F20
 void CreditScreen::TurnOffTongues(Reanimation* theReanim, int aParentTrack)
 {
     for (int aTrackIndex = 0; aTrackIndex < theReanim->mDefinition->mTracks.count; aTrackIndex++)
     {
         ReanimatorTrackInstance* aTrackInstance = &theReanim->mTrackInstances[aTrackIndex];
-        if (theReanim->mReanimationType == ReanimationType::REANIM_ZOMBIE_CREDITS_DANCE &&
-            aParentTrack % 4 != 1 && stricmp(theReanim->mDefinition->mTracks.tracks[aTrackIndex].mName, "anim_tongue") == 0)
+        if (theReanim->mReanimationType == ReanimationType::REANIM_ZOMBIE_CREDITS_DANCE && aParentTrack % 4 != 1 &&
+            _stricmp(theReanim->mDefinition->mTracks.tracks[aTrackIndex].mName, "anim_tongue") == 0)
         {
             aTrackInstance->mRenderGroup = RENDER_GROUP_HIDDEN;
         }
@@ -1441,7 +1484,7 @@ void CreditScreen::TurnOffTongues(Reanimation* theReanim, int aParentTrack)
     }
 }
 
-//0x437FC0
+// 0x437FC0
 void TodsHackyUnprotectedPerfTimer::SetStartTime(int theTimeMillisecondsAgo)
 {
     QueryPerformanceCounter(&mStart);
@@ -1450,7 +1493,7 @@ void TodsHackyUnprotectedPerfTimer::SetStartTime(int theTimeMillisecondsAgo)
     mStart.QuadPart += theTimeMillisecondsAgo * aFreq.QuadPart / -1000;
 }
 
-//0x438010
+// 0x438010
 void CreditScreen::JumpToFrame(CreditsPhase thePhase, float theFrame)
 {
     mMainMenuButton->SetVisible(false);
@@ -1468,9 +1511,9 @@ void CreditScreen::JumpToFrame(CreditsPhase thePhase, float theFrame)
         aReanim = PlayReanim((int)thePhase + 1);
     }
 
-    float aFrameFactor = 1.0f / (aReanim->mDefinition->mTracks.tracks->mTransforms.count - 1);
-    int aMusicOffset = theFrame * 12142.0f;
-    int aJumpMilliseconds = theFrame * 1000.0f / 7.0f;
+    float aFrameFactor      = 1.0f / (aReanim->mDefinition->mTracks.tracks->mTransforms.count - 1);
+    int   aMusicOffset      = theFrame * 12142.0f;
+    int   aJumpMilliseconds = theFrame * 1000.0f / 7.0f;
     if (thePhase == CreditsPhase::CREDITS_MAIN1)
     {
         if (theFrame >= 368.0f)
@@ -1571,8 +1614,7 @@ void CreditScreen::JumpToFrame(CreditsPhase thePhase, float theFrame)
 
 void CreditScreen::KeyChar(SexyChar theChar)
 {
-    if (mCreditsPaused || !mApp->mDebugKeysEnabled)
-        return;
+    if (mCreditsPaused || !mApp->mDebugKeysEnabled) return;
 
     if (theChar == _S('1'))
     {
@@ -1648,25 +1690,20 @@ void CreditScreen::KeyChar(SexyChar theChar)
     }
 }
 
-//0x438430
+// 0x438430
 void CreditScreen::PauseCredits()
 {
-    if (mCreditsPaused)
-        return;
+    if (mCreditsPaused) return;
 
     mApp->mSoundSystem->StopFoley(FoleyType::FOLEY_SCREAM);
     mApp->PlaySample(SOUND_PAUSE);
-    mCreditsPaused = true;
+    mCreditsPaused       = true;
     int aDurationOnPause = mTimerSinceStart.GetDuration();
     mApp->mMusic->GameMusicPause(true);
 
-    if (mApp->LawnMessageBox(
-        Dialogs::DIALOG_MESSAGE, 
-        _S("[CREDITS_PAUSE_HEADER]"), 
-        _S("[CREDITS_PAUSE_BODY]"), 
-        _S("[CREDITS_RESUME_BUTTON]"), 
-        _S("[MAIN_MENU_BUTTON]"), 
-        Dialog::BUTTONS_YES_NO) == Dialog::ID_NO)
+    if (mApp->LawnMessageBox(Dialogs::DIALOG_MESSAGE, _S("[CREDITS_PAUSE_HEADER]"), _S("[CREDITS_PAUSE_BODY]"),
+                             _S("[CREDITS_RESUME_BUTTON]"), _S("[MAIN_MENU_BUTTON]"),
+                             Dialog::BUTTONS_YES_NO) == Dialog::ID_NO)
     {
         mApp->KillCreditScreen();
         mApp->DoBackToMain();
@@ -1677,11 +1714,10 @@ void CreditScreen::PauseCredits()
     ((TodsHackyUnprotectedPerfTimer*)&mTimerSinceStart)->SetStartTime(aDurationOnPause);
 }
 
-//0x438530
+// 0x438530
 void CreditScreen::KeyDown(KeyCode theKey)
 {
-    if (mCreditsPaused)
-        return;
+    if (mCreditsPaused) return;
 
     if (theKey == KeyCode::KEYCODE_SPACE || theKey == KeyCode::KEYCODE_RETURN || theKey == KeyCode::KEYCODE_ESCAPE)
     {
@@ -1689,7 +1725,7 @@ void CreditScreen::KeyDown(KeyCode theKey)
     }
 }
 
-//0x438560
+// 0x438560
 void CreditScreen::ButtonPress(int theId)
 {
     if (theId == CreditScreen::Credits_Button_MainMenu)
@@ -1702,7 +1738,7 @@ void CreditScreen::ButtonPress(int theId)
     }
 }
 
-//0x4385A0
+// 0x4385A0
 void CreditScreen::ButtonDepress(int theId)
 {
     if (theId == CreditScreen::Credits_Button_MainMenu)
@@ -1717,4 +1753,4 @@ void CreditScreen::ButtonDepress(int theId)
     }
 }
 
-void CreditScreen::MouseUp(int, int, int){}
+void CreditScreen::MouseUp(int, int, int) {}
