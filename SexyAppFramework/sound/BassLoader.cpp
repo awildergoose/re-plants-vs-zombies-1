@@ -1,5 +1,6 @@
 #include "BassLoader.h"
 #include <stdlib.h>
+#include <string>
 
 using namespace Sexy;
 
@@ -174,10 +175,36 @@ void Sexy::LoadBassDLL()
     InterlockedIncrement(&gBassLoadCount);
     if (gBass != NULL) return;
 
+    // Enhanced debug info
+    char  debugMsg[1024];
+    DWORD lastError = 0;
+
     gBass = new BASS_INSTANCE("bass.dll");
+
     if (gBass->mModule == NULL)
     {
-        MessageBoxA(NULL, "Can't find bass.dll.", "Error", MB_OK | MB_ICONERROR);
+        lastError = GetLastError();
+
+        // Check if file exists
+        DWORD fileAttrib = GetFileAttributesA("bass.dll");
+        bool  fileExists = (fileAttrib != INVALID_FILE_ATTRIBUTES && !(fileAttrib & FILE_ATTRIBUTE_DIRECTORY));
+
+        // Debug: show current directory
+        char currentDir[MAX_PATH];
+        GetCurrentDirectoryA(MAX_PATH, currentDir);
+
+        char exePath[MAX_PATH];
+        GetModuleFileNameA(NULL, exePath, MAX_PATH);
+
+        sprintf(debugMsg,
+                "EXE: %s\n"
+                "Current Dir: %s\n"
+                "File exists: %s\n"
+                "Last Error: %lu\n"
+                "BASS.mModule: %p",
+                exePath, currentDir, fileExists ? "YES" : "NO", lastError, gBass->mModule);
+
+        MessageBoxA(NULL, debugMsg, "Enhanced Debug Info", MB_OK);
         exit(0);
     }
 }
