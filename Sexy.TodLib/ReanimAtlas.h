@@ -48,6 +48,7 @@ class ReanimAtlas
     /*inline*/ bool   ImageFindPlace(ReanimAtlasImage* theAtlasImageToPlace, int theImageCount, int theMaxWidth);
     /*inline*/ bool   PlaceAtlasImage(ReanimAtlasImage* theAtlasImageToPlace, int theImageCount, int theMaxWidth);
     int               PickAtlasWidth();
+    int               PickAtlasHeight();
     void              ArrangeImages(int& theAtlasWidth, int& theAtlasHeight);
     ReanimAtlasImage* GetEncodedReanimAtlas(Image* theImage);
 };

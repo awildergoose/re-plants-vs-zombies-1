@@ -1,4 +1,5 @@
 #include <time.h>
+#include "System/ReanimationLawn.h"
 #include "ZenGarden.h"
 #include "BoardInclude.h"
 #include "System/Music.h"
@@ -17,6 +18,7 @@
 #include "Widget/SeedChooserScreen.h"
 #include "../Sexy.TodLib/Attachment.h"
 #include "../Sexy.TodLib/Reanimator.h"
+#include "graphics/MemoryImage.h"
 #include "widget/Dialog.h"
 #include "misc/MTRand.h"
 #include "../Sexy.TodLib/TodParticle.h"
@@ -7958,7 +7960,7 @@ void Board::Draw(Graphics* g)
         int aInterval      = aTickCount - mIntervalDrawTime;
         if (aInterval > 10000)
         {
-            float aIntervalFPS = (aIntervalDraws * 1000 + 500) / aInterval;
+            float aIntervalFPS = (aIntervalDraws * 1000.0 + 500.0) / aInterval;
             if (mMinFPS > aIntervalFPS)
             {
                 mMinFPS = aIntervalFPS;
@@ -8189,9 +8191,285 @@ static void TodCrash()
     TOD_ASSERT(false, "Crash%s", "!!!!");
 }
 
+#include <libpng/png.h>
+#include <cstdio>
+
+bool WritePNGImage(const std::string& fileName, MemoryImage* img)
+{
+    if (!img || !img->mBits)
+    {
+        TodTrace("image is null or bits are null!");
+        return false;
+    }
+
+    FILE* fp = fopen(fileName.c_str(), "wb");
+    if (!fp)
+    {
+        TodTrace("failed to open %s for writing", fileName.c_str());
+        return false;
+    }
+
+    png_structp png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, nullptr, nullptr, nullptr);
+    if (!png_ptr)
+    {
+        fclose(fp);
+        return false;
+    }
+
+    png_infop info_ptr = png_create_info_struct(png_ptr);
+    if (!info_ptr)
+    {
+        png_destroy_write_struct(&png_ptr, nullptr);
+        fclose(fp);
+        return false;
+    }
+
+    if (setjmp(png_jmpbuf(png_ptr)))
+    {
+        png_destroy_write_struct(&png_ptr, &info_ptr);
+        fclose(fp);
+        return false;
+    }
+
+    png_init_io(png_ptr, fp);
+
+    png_set_IHDR(png_ptr, info_ptr, img->mWidth, img->mHeight, 8, PNG_COLOR_TYPE_RGBA, PNG_INTERLACE_NONE,
+                 PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+
+    png_write_info(png_ptr, info_ptr);
+
+    png_bytep* row_pointers = new png_bytep[img->mHeight];
+    for (int y = 0; y < img->mHeight; ++y)
+    {
+        png_bytep row    = new png_byte[img->mWidth * 4];
+        DWORD*    srcRow = img->mBits + y * img->mWidth;
+
+        for (int x = 0; x < img->mWidth; ++x)
+        {
+            DWORD px       = srcRow[x];
+            row[x * 4 + 0] = (px >> 16) & 0xFF;  // R
+            row[x * 4 + 1] = (px >> 8) & 0xFF;   // G
+            row[x * 4 + 2] = (px >> 0) & 0xFF;   // B
+            row[x * 4 + 3] = (px >> 24) & 0xFF;  // A
+        }
+        row_pointers[y] = row;
+    }
+
+    png_write_image(png_ptr, row_pointers);
+    for (int y = 0; y < img->mHeight; ++y) delete[] row_pointers[y];
+    delete[] row_pointers;
+    png_write_end(png_ptr, nullptr);
+    png_destroy_write_struct(&png_ptr, &info_ptr);
+    fclose(fp);
+
+    return true;
+}
+
+bool WriteBMPImage(const std::string& fileName, MemoryImage* img)
+{
+    if (!img || !img->mBits)
+    {
+        TodTrace("image is null or bits are null!");
+        return false;
+    }
+
+    FILE* f = fopen(fileName.c_str(), "wb");
+    if (!f)
+    {
+        TodTrace("failed to open %s file for writing", fileName.c_str());
+        return false;
+    }
+
+    const int width         = img->mWidth;
+    const int height        = img->mHeight;
+    const int bytesPerPixel = 4;
+    const int dataSize      = width * height * bytesPerPixel;
+
+    BITMAPFILEHEADER fileHeader = {};
+    BITMAPINFOHEADER infoHeader = {};
+
+    fileHeader.bfType    = 0x4D42;  // 'BM'
+    fileHeader.bfOffBits = sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
+    fileHeader.bfSize    = fileHeader.bfOffBits + dataSize;
+
+    infoHeader.biSize        = sizeof(BITMAPINFOHEADER);
+    infoHeader.biWidth       = width;
+    infoHeader.biHeight      = height;
+    infoHeader.biPlanes      = 1;
+    infoHeader.biBitCount    = 32;
+    infoHeader.biCompression = BI_RGB;
+    infoHeader.biSizeImage   = dataSize;
+
+    fwrite(&fileHeader, sizeof(fileHeader), 1, f);
+    fwrite(&infoHeader, sizeof(infoHeader), 1, f);
+
+    // BMP rows are bottom-to-top, so we write reversed vertically
+    const DWORD* row = img->mBits + (height - 1) * width;
+
+    for (int y = 0; y < height; ++y)
+    {
+        fwrite(row, bytesPerPixel, width, f);
+        row -= width;
+    }
+
+    fclose(f);
+    return true;
+}
+
+static bool SaveMemoryImageAsPNG(const std::string& aPath, Sexy::MemoryImage* aMem)
+{
+    if (!aMem)
+    {
+        TodTrace("SaveMemoryImageAsPNG: null image");
+        return false;
+    }
+
+    aMem->CommitBits();
+
+    int    width  = aMem->GetWidth();
+    int    height = aMem->GetHeight();
+    ulong* bits   = aMem->GetBits();
+
+    if (!bits || width <= 0 || height <= 0)
+    {
+        TodTrace("SaveMemoryImageAsPNG: invalid width/height/bits (%d x %d)", width, height);
+        return false;
+    }
+
+    return WritePNGImage(aPath.c_str(), aMem);
+}
+
+#include <filesystem>
+#include "../Sexy.TodLib/ReanimAtlas.h"
+
 // 0x41B950（原版中废弃）
 void Board::KeyChar(SexyChar theChar)
 {
+    if (theChar == _S('N'))
+    {
+        // Dump all loaded seed packet reanims
+        for (int i = 0; i < SeedType::NUM_SEED_TYPES; i++)
+        {
+            if (!gLawnApp->mReanimatorCache->mPlantImages[i])
+            {
+                gLawnApp->mReanimatorCache->mPlantImages[i] =
+                    gLawnApp->mReanimatorCache->MakeCachedPlantFrame((SeedType)i, DrawVariation::VARIATION_NORMAL);
+            }
+        }
+
+        int cols     = 8;
+        int rows     = (SeedType::NUM_SEED_TYPES + cols - 1) / cols;
+        int cellSize = 256;
+        int width    = cols * cellSize;
+        int height   = rows * cellSize;
+
+        Sexy::MemoryImage* big = gLawnApp->mReanimatorCache->MakeBlankMemoryImage(width, height);
+        if (!big)
+        {
+            TodTrace("DumpAllPlantFrames: failed to create blank image");
+            return;
+        }
+
+        Sexy::Graphics g(big);
+        g.ClearRect(0, 0, width, height);
+
+        for (int i = 0; i < SeedType::NUM_SEED_TYPES; i++)
+        {
+            Sexy::MemoryImage* img = gLawnApp->mReanimatorCache->mPlantImages[i];
+            if (!img) continue;
+
+            int col  = i % cols;
+            int row  = i / cols;
+            int posX = col * cellSize;
+            int posY = row * cellSize;
+
+            g.DrawImage(img, posX, posY);
+        }
+
+        if (SaveMemoryImageAsPNG("dump/all_plants.bmp", big))
+            TodTrace("Saved all plant frames to dump/all_plants.bmp");
+        else
+            TodTrace("Failed to save all_plants.bmp");
+        return;
+    }
+
+    if (theChar == _S('B'))
+    {
+        if (!gLawnApp || !gLawnApp->mReanimatorCache)
+        {
+            TodTrace("DumpAllReanims: missing LawnApp or ReanimatorCache");
+            return;
+        }
+
+        std::filesystem::create_directories("dump/reanim");
+
+        int totalCount = gReanimatorDefCount;
+        TodTrace("Dumping %d reanimations...", totalCount);
+
+        for (int i = 0; i < totalCount; i++)
+        {
+            Reanimation* reanim  = gLawnApp->AddReanimation(0, 0, 0, (ReanimationType)i);
+            std::string  nameStr = std::to_string(i);
+            const char*  name    = nameStr.c_str();
+            TodTrace("Dumping %s...", name);
+            if (!reanim)
+            {
+                TodTrace("  Failed to instantiate %d", i);
+                continue;
+            }
+
+            // Loop through all animation tracks (idle, blink, etc.)
+            for (int a = 0; a < reanim->mDefinition->mTracks.count; a++)
+            {
+                ReanimatorTrack* track = &reanim->mDefinition->mTracks.tracks[a];
+                if (!track || !track->mName) continue;
+
+                const char* trackName = track->mName;
+                reanim->PlayReanim(trackName, ReanimLoopType::REANIM_LOOP, 0.0f, reanim->mAnimRate);
+
+                auto atlas = reanim->mDefinition->mReanimAtlas;
+                if (atlas == nullptr)
+                {
+                    TodTrace("failed to find atlas for %s", trackName);
+                    continue;
+                }
+
+                if (!(std::strncmp(trackName, "anim_", 5) == 0))
+                {
+                    continue;
+                }
+
+                for (int f = 0; f < reanim->mFrameCount; f++)
+                {
+                    if (reanim->mReanimationType == REANIM_FINAL_WAVE)
+                    {
+                        continue;
+                    }
+
+                    // make a fresh frame buffer
+                    Sexy::MemoryImage frame;
+                    frame.Create(atlas->PickAtlasWidth(), atlas->PickAtlasHeight());
+                    frame.SetImageMode(true, true);
+
+                    Sexy::Graphics g(&frame);
+                    g.ClearRect(Sexy::Rect(0, 0, 256, 256));
+
+                    reanim->Update();
+                    reanim->Draw(&g);
+
+                    char filename[512];
+                    sprintf_s(filename, "dump/reanim/%s_%s_%03d.bmp", name, trackName, f);
+                    SaveMemoryImageAsPNG(filename, &frame);
+                }
+            }
+
+            reanim->mDead = true;
+        }
+
+        TodTrace("All reanimations dumped!");
+        return;
+    }
+
     if (!mApp->mDebugKeysEnabled) return;
 
     TodTraceAndLog("Board cheat key '%c'", theChar);

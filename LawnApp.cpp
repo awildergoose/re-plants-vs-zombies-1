@@ -1341,6 +1341,12 @@ bool LawnApp::DebugKeyDown(int theKey)
 // 0x4522E0
 void LawnApp::HandleCmdLineParam(const std::string& theParamName, const std::string& theParamValue)
 {
+    AllocConsole();
+    FILE* f = new FILE();
+    freopen_s(&f, "CONOUT$", "w", stdout);
+    freopen_s(&f, "CONOUT$", "w", stderr);
+    freopen_s(&f, "CONIN$", "r", stdin);
+
     if (theParamName == "-tod")
     {
 #ifdef _DEBUG

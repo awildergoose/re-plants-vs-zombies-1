@@ -91,6 +91,25 @@ int ReanimAtlas::PickAtlasWidth()
                  2048));  // 取“边长”和“最宽贴图的宽度”的较大值（且不超过 2048），并向上取至 2 的整数次幂
 }
 
+int ReanimAtlas::PickAtlasHeight()
+{
+    int totalArea  = 0;
+    int aMaxHeight = 0;
+
+    for (int i = 0; i < mImageCount; i++)
+    {
+        ReanimAtlasImage* aImage = &mImageArray[i];
+        totalArea += aImage->mWidth * aImage->mHeight;
+
+        // include +2 for padding consistency (same as PickAtlasWidth)
+        if (aMaxHeight <= aImage->mHeight + 2) aMaxHeight = aImage->mHeight + 2;
+    }
+
+    int aHeight = FloatRoundToInt(sqrt(totalArea));  // assume roughly square atlas
+    return GetClosestPowerOf2Above(std::min(std::max(aHeight, aMaxHeight),
+                                            2048));  // clamp between largest texture height and 2048, then pow2 up
+}
+
 // 0x470420
 bool ReanimAtlas::ImageFits(int theImageCount, const Rect& rectTest, int theMaxWidth)
 {

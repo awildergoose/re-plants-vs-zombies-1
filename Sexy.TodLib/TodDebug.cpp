@@ -157,6 +157,7 @@ void TodTrace(const char* theFormat, ...)
     }
 
     OutputDebugStringA(aButter);
+    printf("%s", aButter);
 }
 
 void TodHesitationTrace(...) {}
