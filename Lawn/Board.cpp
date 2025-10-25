@@ -8342,6 +8342,78 @@ static bool SaveMemoryImageAsPNG(const std::string& aPath, Sexy::MemoryImage* aM
 #include <filesystem>
 #include "../Sexy.TodLib/ReanimAtlas.h"
 
+#include <thread>
+#include <vector>
+#include <mutex>
+
+std::mutex traceMutex;
+
+void DumpReanimation(int i)
+{
+    Reanimation* reanim = gLawnApp->AddReanimation(0, 0, 0, (ReanimationType)i);
+    if (!reanim) return;
+
+    std::string nameStr = std::to_string(i);
+    const char* name    = nameStr.c_str();
+
+    {
+        std::lock_guard<std::mutex> lock(traceMutex);
+        TodTrace("Dumping %s...", name);
+    }
+
+    for (int a = 0; a < reanim->mDefinition->mTracks.count; a++)
+    {
+        ReanimatorTrack* track = &reanim->mDefinition->mTracks.tracks[a];
+        if (!track || !track->mName) continue;
+        const char* trackName = track->mName;
+
+        reanim->PlayReanim(trackName, ReanimLoopType::REANIM_LOOP, 0.0f, reanim->mAnimRate);
+
+        auto atlas = reanim->mDefinition->mReanimAtlas;
+        if (!atlas) continue;
+        if (std::strncmp(trackName, "anim_", 5) != 0) continue;
+
+        for (int f = 0; f < reanim->mFrameCount; f++)
+        {
+            if (reanim->mReanimationType == REANIM_FINAL_WAVE) continue;
+
+            Sexy::MemoryImage frame;
+            frame.Create(atlas->PickAtlasWidth(), atlas->PickAtlasHeight());
+            frame.SetImageMode(true, true);
+
+            Sexy::Graphics g(&frame);
+            g.ClearRect(Sexy::Rect(0, 0, 256, 256));
+
+            reanim->Update();
+            reanim->Draw(&g);
+
+            char filename[512];
+            sprintf_s(filename, "dump/reanim/%s_%s_%03d.png", name, trackName, f);
+            SaveMemoryImageAsPNG(filename, &frame);
+        }
+    }
+
+    reanim->mDead = true;
+}
+
+void DumpAllReanimations(unsigned long long totalCount)
+{
+    unsigned long long       numThreads = std::thread::hardware_concurrency();
+    std::vector<std::thread> threads;
+
+    for (unsigned long long i = 0; i < totalCount; i++)
+    {
+        threads.emplace_back(DumpReanimation, i);
+        if (threads.size() >= numThreads)
+        {
+            for (auto& t : threads) t.join();
+            threads.clear();
+        }
+    }
+
+    for (auto& t : threads) t.join();
+}
+
 // 0x41B950（原版中废弃）
 void Board::KeyChar(SexyChar theChar)
 {
@@ -8386,10 +8458,10 @@ void Board::KeyChar(SexyChar theChar)
             g.DrawImage(img, posX, posY);
         }
 
-        if (SaveMemoryImageAsPNG("dump/all_plants.bmp", big))
-            TodTrace("Saved all plant frames to dump/all_plants.bmp");
+        if (SaveMemoryImageAsPNG("dump/all_plants.png", big))
+            TodTrace("Saved all plant frames to dump/all_plants.png");
         else
-            TodTrace("Failed to save all_plants.bmp");
+            TodTrace("Failed to save all_plants.png");
         return;
     }
 
@@ -8406,65 +8478,7 @@ void Board::KeyChar(SexyChar theChar)
         int totalCount = gReanimatorDefCount;
         TodTrace("Dumping %d reanimations...", totalCount);
 
-        for (int i = 0; i < totalCount; i++)
-        {
-            Reanimation* reanim  = gLawnApp->AddReanimation(0, 0, 0, (ReanimationType)i);
-            std::string  nameStr = std::to_string(i);
-            const char*  name    = nameStr.c_str();
-            TodTrace("Dumping %s...", name);
-            if (!reanim)
-            {
-                TodTrace("  Failed to instantiate %d", i);
-                continue;
-            }
-
-            // Loop through all animation tracks (idle, blink, etc.)
-            for (int a = 0; a < reanim->mDefinition->mTracks.count; a++)
-            {
-                ReanimatorTrack* track = &reanim->mDefinition->mTracks.tracks[a];
-                if (!track || !track->mName) continue;
-
-                const char* trackName = track->mName;
-                reanim->PlayReanim(trackName, ReanimLoopType::REANIM_LOOP, 0.0f, reanim->mAnimRate);
-
-                auto atlas = reanim->mDefinition->mReanimAtlas;
-                if (atlas == nullptr)
-                {
-                    TodTrace("failed to find atlas for %s", trackName);
-                    continue;
-                }
-
-                if (!(std::strncmp(trackName, "anim_", 5) == 0))
-                {
-                    continue;
-                }
-
-                for (int f = 0; f < reanim->mFrameCount; f++)
-                {
-                    if (reanim->mReanimationType == REANIM_FINAL_WAVE)
-                    {
-                        continue;
-                    }
-
-                    // make a fresh frame buffer
-                    Sexy::MemoryImage frame;
-                    frame.Create(atlas->PickAtlasWidth(), atlas->PickAtlasHeight());
-                    frame.SetImageMode(true, true);
-
-                    Sexy::Graphics g(&frame);
-                    g.ClearRect(Sexy::Rect(0, 0, 256, 256));
-
-                    reanim->Update();
-                    reanim->Draw(&g);
-
-                    char filename[512];
-                    sprintf_s(filename, "dump/reanim/%s_%s_%03d.bmp", name, trackName, f);
-                    SaveMemoryImageAsPNG(filename, &frame);
-                }
-            }
-
-            reanim->mDead = true;
-        }
+        DumpAllReanimations(totalCount);
 
         TodTrace("All reanimations dumped!");
         return;
